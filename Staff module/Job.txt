@@ -1,0 +1,4 @@
+Cashier,2000.00,10:00 am - 08:00pm
+Cashier,2000.00,08:00 pm - 10:00pm
+Asst. Manager,3500.00,12:00 pm - 10:00pm
+Manager,4500.00,10:00 pm - 10:00pm

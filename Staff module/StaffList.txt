@@ -1,0 +1,5 @@
+Jason Tan,M,9/7/2020,3,asd123,true
+Lucas Chong,M,20/8/2022,2,qwe123,false
+Terence Wong,M,2/10/2021,1,rty123,false
+Yap Sun Wen,M,17/13/2022,0,iop890,false
+Jasmine Tea,F,20/9/2023,1,zxc456,true

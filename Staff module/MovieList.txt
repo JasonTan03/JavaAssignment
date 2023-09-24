@@ -1,0 +1,7 @@
+The Equalizer 3,Action,31,8,2023,110
+Siam Curse,Horror,14,9,2023,91
+Echoes Of The Thunder,Action,14,9,2023,95
+Sleep,Horror,14,9,2023,95
+A Haunting In Venice ,Crime,14,9,2023,100
+Miss Shampoo,Romance,14,9,2023,120
+Mark Antony ,Action,15,9,2023,150

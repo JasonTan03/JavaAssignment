@@ -4,6 +4,7 @@
  */
 package BookingModule;
 import static TicketingSystem.TicketingSystem.members;
+import static TicketingSystem.TicketingSystem.TicketSales;
 import MovieModule.Movie;
 import java.util.Scanner;
 import java.io.File;  // Import the File class
@@ -20,7 +21,6 @@ import static TicketingSystem.TicketingSystem.moviesList;
 
 public class Ticket 
 {
-    static ArrayList<Ticket> TicketSales = new ArrayList<>();
     
     private Movie movie;
     private ArrayList<HallSeat> hallSeat;

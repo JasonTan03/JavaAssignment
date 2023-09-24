@@ -4,6 +4,7 @@
  */
 package TicketingSystem;
 
+import BookingModule.Ticket;
 import MemberModule.Member;
 import MemberModule.mRanks;
 import MovieModule.Movie;
@@ -24,6 +25,7 @@ import staff.module.Staff;
  * @author Ai
      */
 public final class TicketingSystem{
+    public static ArrayList<Ticket> TicketSales = new ArrayList<>();
     public static ArrayList<JobTitle> jobList = new ArrayList<JobTitle>();
     public static ArrayList<Staff> staffList  = new ArrayList<Staff>();
     public static ArrayList<Member> members = new ArrayList<Member>();

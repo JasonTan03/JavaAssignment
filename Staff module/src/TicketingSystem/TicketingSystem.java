@@ -228,6 +228,7 @@ public final class TicketingSystem{
   } 
     public static void MovieModule()
     {
+        ClearScreen.cls();
         int moviechoice;
         do{
         System.out.println("1.Add movie");

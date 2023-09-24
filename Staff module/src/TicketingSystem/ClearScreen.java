@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 public class ClearScreen {
 
 
-public  void clearJavaConsoleScreen() {
+public static void cls() {
         try{
             Robot rob = new Robot();
             try {

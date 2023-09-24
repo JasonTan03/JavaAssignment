@@ -6,6 +6,7 @@ package TicketingSystem;
 
 import MemberModule.Member;
 import MemberModule.mRanks;
+import MovieModule.Movie;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,15 +28,46 @@ public final class TicketingSystem{
     public static ArrayList<Staff> staffList  = new ArrayList<Staff>();
     public static ArrayList<Member> members = new ArrayList<Member>();
     public static ArrayList<mRanks> memranks = new ArrayList<mRanks>();
+    public static ArrayList<Movie> moviesList = new ArrayList<>();
     
-    public static void main(String[] args) throws FileNotFoundException{
+    public static void main(String[] args) throws FileNotFoundException, CloneNotSupportedException{
         readMemberModuleFile();
         readStaffModuleFile();
+        Movie.readMovieList();
+        int choice;
         Logo();
         boolean login = Staff.login();
         if(login){
-            MemberModule();
-            StaffModule();
+            
+            
+            
+            do{
+                System.out.println("1.Staff");
+            System.out.println("2.Member");
+            System.out.println("3.Booking");
+            System.out.println("4.Movie");
+            System.out.println("5.Exit");
+            System.out.print("Enter your choice:");
+            choice = new Scanner(System.in).nextInt();
+            
+            switch(choice)
+            {
+                
+                case 1:StaffModule();break;
+                
+                case 2:MemberModule();break;
+                
+                case 3:BookingModule();break;
+                
+                case 4:MovieModule();break;
+                
+                case 5:break;
+                
+                default:System.out.println("Invalid choice.");
+            }
+            }while(choice !=5);
+            
+  
         }
     }
     public static void readMemberModuleFile() throws FileNotFoundException{
@@ -192,6 +224,61 @@ public final class TicketingSystem{
     }
     
   } 
+    public static void MovieModule()
+    {
+        int moviechoice;
+        do{
+        System.out.println("1.Add movie");
+        System.out.println("2.Display movie");
+        System.out.println("3.Search movie");
+        System.out.println("4.Modify movie");
+        System.out.println("5.Delete movie");
+        System.out.println("6.Exit");
+        
+        try{
+            System.out.print("\nEnter your choice:");
+            moviechoice = new Scanner(System.in).nextInt();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Invalid choice.Please enter only 1-6");
+            System.out.print("Enter your choice:");
+            moviechoice = new Scanner(System.in).nextInt();
+        }
+        switch(moviechoice)
+        {
+            case 1:
+                Movie.addMovie();
+                break;
+            case 2:
+                Movie.displayMovie();
+                break;  
+            case 3:
+                Movie.searchMovie();
+                break;
+            case 4:
+                Movie.modifyMovie();
+                break;
+            case 5:
+                Movie.deleteMovie();
+                break;
+            case 6:
+                break;
+            default:System.out.println("Invalid choice. Enter 1-6 only.");
+        }
+        }while(moviechoice!=6);
+        
+        Movie.writeMovieList();
+    }
+    
+    public static void BookingModule() throws CloneNotSupportedException
+    {
+           Scanner sc = new Scanner(System.in);
+        System.out.print("Enter 1:");
+        int num = sc.nextInt();
+            BookingModule.Ticket.bookingTicket();
+
+    }
     public static void Logo(){
         System.out.println("============================================================================");
         System.out.println("      TTTTTTTTTTTTTT          GGGGGGGGGGGG       BBBBBBBBBBBBBBBBB");

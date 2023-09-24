@@ -39,7 +39,7 @@ public class mRanks {
         this.status = status;
     }
 
-   
+   @Override
     public String toString() {
         return String.format("%-15s  %-7s",ranks,status);
     }

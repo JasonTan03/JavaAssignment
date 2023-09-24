@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package sales.module;
+package BookingModule;
+import static TicketingSystem.TicketingSystem.members;
+import MovieModule.Movie;
 import java.util.Scanner;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
@@ -12,6 +14,8 @@ import java.util.Calendar;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+
+import static TicketingSystem.TicketingSystem.moviesList;
 //valid cdc number = {12345674, 24681355, 0304261012}
 
 public class Ticket 
@@ -29,12 +33,6 @@ public class Ticket
     private static int crimePrice;
     private static int comedyPrice;
 
-    public static void main(String[] args) throws CloneNotSupportedException 
-    {
-        Movie.readMovieList();
-        mainMenu();
-    }
-    
     public Ticket(Movie movie, ArrayList<HallSeat> hallSeat, double totalTicketPrice, String customerPaymentType) 
     {
         this.movie = movie;
@@ -44,7 +42,7 @@ public class Ticket
         this.customerPaymentType = customerPaymentType;
     }
     
-    private static void bookingTicket() throws CloneNotSupportedException
+    public static void bookingTicket() throws CloneNotSupportedException
     {
         clearScreen();
         setActionPrice(15);
@@ -66,7 +64,7 @@ public class Ticket
         System.out.print("Select Movie:");
         int mvSelection = bkt.nextInt();
         mvSelection--;
-        mvSelected = (Movie)Movie.moviesList.get(mvSelection).clone();
+        mvSelected = (Movie)moviesList.get(mvSelection).clone();
         
         System.out.print("Enter The Number Of Seat: ");
         int numberOfSeat = bkt.nextInt();
@@ -153,10 +151,18 @@ public class Ticket
                    }
                    
                    TicketSales.add(new Ticket(mvSelected,Seat,totalPriceAfterDiscount, paymentType));
+                   clearScreen();
+                       System.out.println("   _                              _\n" +
+                                         " ('v')                          ('v')\n" +
+                                         "//-=-\\\\ !!!Enjoy Your Movie!!! //-=-\\\\\n" +
+                                         "(\\_=_/)                        (\\_=_/)\n" +
+                                         " ^^ ^^                          ^^ ^^");   
+                       wait(5);
+                       clearScreen();
                 }
              else if(cfm == 'N')
                 {
-                  mainMenu();
+                  break;
                 }
              else
                 {
@@ -165,13 +171,7 @@ public class Ticket
         
             }while(cfm != 'Y' && cfm != 'N');
             
-             clearScreen();
-                       System.out.println("   _                              _\n" +
-                                         " ('v')                          ('v')\n" +
-                                         "//-=-\\\\ !!!Enjoy Your Movie!!! //-=-\\\\\n" +
-                                         "(\\_=_/)                        (\\_=_/)\n" +
-                                         " ^^ ^^                          ^^ ^^");   
-                       wait(5);
+             
     }
     
     public static double checkMember(int numberOfSeat, Movie mvSelected)
@@ -194,11 +194,11 @@ public class Ticket
             System.out.print("Enter Member ID: ");
             String inputMemberId = new Scanner(System.in).next();
             
-            for(int m = 0; m < OOPAss.members.size(); m++)
+            for(int m = 0; m < members.size(); m++)
             {
-                if(inputMemberId.equalsIgnoreCase(OOPAss.members.get(m).getMemberID()))
+                if(inputMemberId.equalsIgnoreCase(members.get(m).getMemberID()))
                 {    
-                    memberLvString = OOPAss.members.get(m).getMranks().getRanks();
+                    memberLvString = members.get(m).getMranks().getRanks();
                     if(memberLvString.toLowerCase() == "normal")
                     {
                         memberLv = 1;
@@ -391,16 +391,7 @@ public class Ticket
         }
     }
      
-    public static void mainMenu() throws CloneNotSupportedException
-    {   
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter 1:");
-        int num = sc.nextInt();
-        if(num == 1)
-        {
-            bookingTicket();
-        }
-    }   
+   
     
     public  static void clearScreen() 
     {

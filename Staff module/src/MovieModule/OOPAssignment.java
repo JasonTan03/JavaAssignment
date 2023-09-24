@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package oop.assignment;
+package MovieModule;
 
 /**
  *
@@ -21,7 +21,7 @@ public class OOPAssignment {
     public static void main(String[] args) {
         
        
-        Movie.readMovieList();
+        
         int moviechoice;
         do{
         System.out.println("1.Add movie");

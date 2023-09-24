@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package oop.assignment;
+package MovieModule;
 
+import static TicketingSystem.TicketingSystem.moviesList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,14 +18,13 @@ import java.util.Scanner;
  *
  * @author user
  */
-public class Movie {
+public class Movie implements Cloneable{
 
     private String movieName;
     private String genre;
     private Date premierDate;
     private int runTime;
     private static int movieNum = 0;
-    static ArrayList<Movie> moviesList = new ArrayList<>();
         static final String[] genreList = {"Action", "Horror", "Romance", "Crime", "Comedy"};
 
     public Movie(){}
@@ -68,6 +68,12 @@ public class Movie {
         this.premierDate = premierDate;
     }
 
+     @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
+    }
+    
     @Override
     public String toString() {
         return String.format("   %-32s %-11s %-18s %-2d", movieName, genre, premierDate, runTime);

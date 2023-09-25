@@ -4,6 +4,7 @@
  */
 package MovieModule;
 
+import BookingModule.Ticket;
 import static TicketingSystem.TicketingSystem.moviesList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -202,6 +203,7 @@ public class Movie implements Cloneable{
             catch(Exception e)
             {
                 System.out.println("Date can only be number.Please reenter.");
+                TicketingSystem.ClearScreen.wait(1);
             }
             }while(day==0);
             
@@ -213,6 +215,7 @@ public class Movie implements Cloneable{
              catch(Exception e)
              {
                  System.out.println("Date can only be number.Please reenter.");
+                 TicketingSystem.ClearScreen.wait(1);
              }
             }while(month==0);
             
@@ -223,6 +226,7 @@ public class Movie implements Cloneable{
             year = new Scanner(System.in).nextInt();
             }catch(Exception e){
                 System.out.println("Date can only be number.Please reenter.");
+                TicketingSystem.ClearScreen.wait(1);
             }
             }while(year==0);
             
@@ -241,10 +245,12 @@ public class Movie implements Cloneable{
             if(runTime<1)
         {
             System.out.println("Run Time cannot be less than or equal 0.Please reenter. ");
+            TicketingSystem.ClearScreen.wait(1);
         }
         }catch(Exception e)
         {
             System.out.println("Run time can only be number.Please reenter.");
+            TicketingSystem.ClearScreen.wait(1);
         }
         
         }while(runTime<1);
@@ -255,6 +261,7 @@ public class Movie implements Cloneable{
     }
 
     public static void displayMovie() {
+          TicketingSystem.ClearScreen.cls();
         movieByDate();
         System.out.println();
         System.out.printf("   %-34s %-10s %-15s %-8s \n", "Movie name", "Genre", "PremiereDate", "Run time");
@@ -263,9 +270,12 @@ public class Movie implements Cloneable{
             System.out.println(moviesList.get(i));
         }
         System.out.println();
+        
+        TicketingSystem.ClearScreen.wait(3);
     }
 
     public static void deleteMovie() {
+          TicketingSystem.ClearScreen.cls();
         if(movieNum==0)
         {
             System.out.println("Movie List is empty.");
@@ -281,9 +291,11 @@ public class Movie implements Cloneable{
          if(deleteIndex<1 || deleteIndex>movieNum )
         {
             System.out.print("\n\nInvalid choice. ");
+              TicketingSystem.ClearScreen.wait(1);
         }
         }catch (Exception e){
             System.out.println("Only number can be entered.Please reenter.\n\n");
+             TicketingSystem.ClearScreen.wait(1);
         }
         
         }while(deleteIndex==0 ||deleteIndex>movieNum );
@@ -295,6 +307,7 @@ public class Movie implements Cloneable{
              if(really!='y'&&really!='Y'&& really!='n'&&really!='N')
              {
                  System.out.println("Invalid choice.Please reenter");
+                  TicketingSystem.ClearScreen.wait(1);
              }
         }while(really!='y'&&really!='Y'&& really!='n'&&really!='N');
         
@@ -308,8 +321,11 @@ public class Movie implements Cloneable{
     }
 
     public static void searchMovie() {
+        
         int choice;
+        TicketingSystem.ClearScreen.cls();
         do {
+            TicketingSystem.ClearScreen.cls();
             choice=0;
             System.out.println("1.Search by Movie Name");
             System.out.println("2.Search by Movie Genre");
@@ -321,6 +337,7 @@ public class Movie implements Cloneable{
             }catch (Exception e)
             {
                 System.out.println("Can only enter number. Please reenter.");
+                 TicketingSystem.ClearScreen.wait(1);
                 
             }
             }while(choice==0);
@@ -338,22 +355,31 @@ public class Movie implements Cloneable{
                     sMovieName = new Scanner(System.in).nextLine();
                     if (sMovieName == "") {
                         System.out.println("\nMovie name cannot be empty.Please reenter");
+                         TicketingSystem.ClearScreen.wait(1);
                     }
                     }while(sMovieName == "");
 
                     for (int i = 0; i < moviesList.size(); i++) {
-                        if (sMovieName.equalsIgnoreCase(moviesList.get(i).getMovieName())) {
-                            System.out.println();
-                            System.out.printf("   %-35s %-10s %-15s %-8s \n", "  Movie name", "Genre", "PremiereDate", "Run time");
-                            System.out.println(count + "." + moviesList.get(i).toString());
-                            count++;
-                            System.out.println();
+                        if((sMovieName.charAt(0)=='x'||sMovieName.charAt(0)=='X') && sMovieName.length()==1)
+                        {
                             break;
                         }
-
+                        //sMovieName.regionMatches(true,0,moviesList.get(i).getMovieName(),0,sMovieName.length())
+                        if (moviesList.get(i).getMovieName().toLowerCase().contains(sMovieName)) {
+                            if(count==1)
+                            {
+                            System.out.println();
+                            System.out.printf("   %-35s %-10s %-15s %-8s \n", "  Movie name", "Genre", "PremiereDate", "Run time");
+                            }
+                            System.out.println(count + "." + moviesList.get(i).toString());
+                            count++;
+                        }
+                         
                     }
+                    System.out.println();
                     if ((sMovieName.charAt(0) != 'x' || sMovieName.length() != 1) && count == 1) {
                         System.out.println("\nMovie name entered not found,Please reenter.");
+                         TicketingSystem.ClearScreen.wait(1);
                     }
                 } while (sMovieName.charAt(0) != 'x' || sMovieName.length() != 1);
 
@@ -361,8 +387,8 @@ public class Movie implements Cloneable{
                 String sMovieGenre;
                 int count;
                 char search;
-                
                 do {
+                    TicketingSystem.ClearScreen.cls();
                     count=0;
                     sMovieGenre = selectGenre();
                      
@@ -397,6 +423,7 @@ public class Movie implements Cloneable{
                      if(search!='y'&&search!='Y'&& search!='n'&&search!='N')
                      {
                          System.out.println("Invalid choice.Please reenter");
+                         TicketingSystem.ClearScreen.wait(1);
                      }
                     }while(search!='y'&&search!='Y'&& search!='n'&&search!='N');
                 } while ((search =='y'||search =='Y'));
@@ -407,6 +434,7 @@ public class Movie implements Cloneable{
             } else {
 
                 System.out.println("Invalid choice,Please reenter again.");
+                TicketingSystem.ClearScreen.wait(1);
             }
         } while (choice > 0 || choice < 3);
 
@@ -414,6 +442,7 @@ public class Movie implements Cloneable{
     
     public static void modifyMovie()
     {
+        TicketingSystem.ClearScreen.cls();
         int editchoice;
         displayMovie();
         int index;
@@ -425,15 +454,18 @@ public class Movie implements Cloneable{
              if(index <1||index>movieNum)
              {
                  System.out.println("Invalid choice.Please reenter");
+                 TicketingSystem.ClearScreen.wait(1);
              }
         } catch (Exception e) {
             System.out.println("Only can enter number.Please try again.");
+            TicketingSystem.ClearScreen.wait(1);
         }
         }while(index <1||index>movieNum);
 
         index--;
         
         do{
+            TicketingSystem.ClearScreen.cls();
             System.out.println("\nMovie Details"              +"                                                   Edit List");
             System.out.printf("%-64s","===========================");
             System.out.println("=========");
@@ -457,11 +489,13 @@ public class Movie implements Cloneable{
         if(editchoice<1||editchoice>5)
         {
             System.out.println("Invalid choice.Please reenter\n");
+            TicketingSystem.ClearScreen.wait(1);
         }
         
         }catch(Exception e)
         {
             System.out.println("Invalid choice.Please reenter.");
+            TicketingSystem.ClearScreen.wait(1);
         }
         }while(editchoice<1||editchoice>5);
         
@@ -477,6 +511,7 @@ public class Movie implements Cloneable{
                     if(editname=="")
                     {
                         System.out.println("Name cannot be empty.Please reenter.\n");
+                        TicketingSystem.ClearScreen.wait(1);
                     }
                     }while(editname=="");
                     moviesList.get(index).setMovieName(editname);
@@ -503,6 +538,7 @@ public class Movie implements Cloneable{
                                  day = new Scanner(System.in).nextInt();
                              } catch (Exception e) {
                                  System.out.println("Date can only be number.Please reenter.");
+                                 TicketingSystem.ClearScreen.wait(1);
                              }
                          } while (day == 0);
 
@@ -512,6 +548,7 @@ public class Movie implements Cloneable{
                                  month = new Scanner(System.in).nextInt();
                              } catch (Exception e) {
                                  System.out.println("Date can only be number.Please reenter.");
+                                 TicketingSystem.ClearScreen.wait(1);
                              }
                          } while (month == 0);
 
@@ -521,6 +558,7 @@ public class Movie implements Cloneable{
                                  year = new Scanner(System.in).nextInt();
                              } catch (Exception e) {
                                  System.out.println("Date can only be number.Please reenter.");
+                                 TicketingSystem.ClearScreen.wait(1);
                              }
                          } while (year == 0);
                          date1.setDay(day);
@@ -539,9 +577,11 @@ public class Movie implements Cloneable{
                             if (runTime < 1)
                             {
                                 System.out.println("Run Time cannot be less than or equal 0.Please reenter. ");
+                                TicketingSystem.ClearScreen.wait(1);
                             }
                         } catch (Exception e) {
                             System.out.println("Run time can only be number.Please reenter.");
+                            TicketingSystem.ClearScreen.wait(1);
                         }
 
                     } while (runTime < 1);
@@ -552,10 +592,12 @@ public class Movie implements Cloneable{
                     break;
                     
                 default:System.out.println("Invalid choice.Select only 1-5.");
+                TicketingSystem.ClearScreen.wait(1);
             }
             
            
         }while(editchoice!=5);
+        TicketingSystem.ClearScreen.cls();
     }
     
     public static void writeMovieList()

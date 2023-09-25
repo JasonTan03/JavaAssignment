@@ -6,6 +6,8 @@ package TicketingSystem;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author user
@@ -25,4 +27,16 @@ public static void cls() {
             } catch (InterruptedException e) { e.printStackTrace(); }
         } catch(AWTException e) { e.printStackTrace(); }  
     }
+
+public static void wait(int sec)
+    {
+    try {
+        Thread.currentThread().sleep(sec*1000);
+    } catch (InterruptedException ex) {
+        ex.printStackTrace();
+    }
+    }
+
 }
+
+

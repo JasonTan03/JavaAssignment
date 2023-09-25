@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import TicketingSystem.ClearScreen;
 
 
 /**
@@ -172,12 +171,14 @@ public class Movie implements Cloneable{
         String genre;
         String movieName;
         Date date1 = new Date();
+        TicketingSystem.ClearScreen.cls();
         do{
         System.out.print("Enter movie name: ");
          movieName = new Scanner(System.in).nextLine();
          if(movieName=="")
          {
              System.out.println("Movie name cannot be empty.Please reenter");
+             TicketingSystem.ClearScreen.wait(1);
          }
         }while(movieName=="");
 

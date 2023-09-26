@@ -35,7 +35,7 @@ public final class TicketingSystem{
     public static void main(String[] args) throws FileNotFoundException, CloneNotSupportedException{
         readMemberModuleFile();
         readStaffModuleFile();
-        
+        Movie.readMovieList();
         int choice;
         Logo();
         boolean login = Staff.login();
@@ -228,16 +228,20 @@ public final class TicketingSystem{
   } 
     public static void MovieModule()
     {
-        Movie.readMovieList();
+
         ClearScreen.cls();
         int moviechoice;
         do{
+        System.out.println("--------------------------");
+        System.out.println("      <MOVIE MODULE>     ");
+        System.out.println("--------------------------");
         System.out.println("1.Add movie");
         System.out.println("2.Display movie");
         System.out.println("3.Search movie");
         System.out.println("4.Modify movie");
         System.out.println("5.Delete movie");
         System.out.println("6.Exit");
+        System.out.println("--------------------------");
         
         try{
             System.out.print("\nEnter your choice:");
@@ -273,6 +277,7 @@ public final class TicketingSystem{
         }while(moviechoice!=6);
         
         Movie.writeMovieList();
+        ClearScreen.cls();
     }
     
     public static void BookingModule() throws CloneNotSupportedException

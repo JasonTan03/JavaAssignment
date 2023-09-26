@@ -27,7 +27,7 @@ public class Movie implements Cloneable{
     private Date premierDate;
     private int runTime;
     private static int movieNum = 0;
-        static final String[] genreList = {"Action", "Horror", "Romance", "Crime", "Comedy"};
+    private static final String[] genreList = {"Action", "Horror", "Romance", "Crime", "Comedy"};
 
     public Movie(){}
     public Movie(String movieName, String genre, Date premierDate,int runTime) {
@@ -35,7 +35,7 @@ public class Movie implements Cloneable{
         this.genre = genre;
         this.runTime = runTime;
         this.premierDate = premierDate;
-        movieNum = movieNum++;
+        movieNum++;
     }
 
     public String getMovieName() {
@@ -52,7 +52,7 @@ public class Movie implements Cloneable{
 
     public void setGenre(String genre) {
         this.genre = genre;
-    }
+    }  
 
     public int getRunTime() {
         return runTime;
@@ -68,6 +68,14 @@ public class Movie implements Cloneable{
 
     public void setPremierDate(Date premierDate) {
         this.premierDate = premierDate;
+    }
+
+    public static int getMovieNum() {
+        return movieNum;
+    }
+
+    public static String[] getGenreList() {
+        return genreList;
     }
 
      @Override
@@ -437,6 +445,7 @@ public class Movie implements Cloneable{
                 TicketingSystem.ClearScreen.wait(1);
             }
         } while (choice > 0 || choice < 3);
+        
 
     }
     

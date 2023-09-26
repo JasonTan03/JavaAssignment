@@ -32,9 +32,6 @@ public class Ticket
     private static double romancePrice = 18.00;
     private static double crimePrice = 20.00;
     private static double comedyPrice = 20.00;
-
-    
-    public static ArrayList<HallSeat> Seat = new ArrayList<>();
     
     public Ticket(Movie movie, ArrayList<HallSeat> hallSeat, double totalTicketPrice, String customerPaymentType) 
     {
@@ -47,6 +44,7 @@ public class Ticket
     
     public static void bookingTicket() throws CloneNotSupportedException
     {
+        ArrayList<HallSeat> Seat = new ArrayList<>();
         clearScreen();
         Movie mvSelected;
         Scanner bkt = new Scanner(System.in); 
@@ -71,10 +69,9 @@ public class Ticket
                clearScreen();
                readSeatFile();
                System.out.println("No." + (i+1) + " Seat Position: ");
-               
-               temp.enterRow();
-               //Seat.add(temp);
-               
+               char rowToUpper = temp.enterRow();
+               int mvColumn = temp.enterColumn();
+               Seat.add(new HallSeat(rowToUpper,mvColumn));
                
            }
            clearScreen();
@@ -155,6 +152,7 @@ public class Ticket
                                          " ^^ ^^                          ^^ ^^");   
                        wait(5);
                        clearScreen();
+                       break;
                 }
              else if(cfm == 'N')
                 {
@@ -166,6 +164,7 @@ public class Ticket
                 }
         
             }while(cfm != 'Y' && cfm != 'N'); 
+            
     }
     
     public static double checkMember(int numberOfSeat, Movie mvSelected)
@@ -279,7 +278,16 @@ public class Ticket
         return customerPayType;
     }
     
-    
+    public static void bookingRecord()
+    {
+        for(int i = 0; i < TicketSales.size(); i++)
+        {
+            System.out.println("No." + (i+1)+ TicketSales.get(i).toString());
+        }
+        System.out.println("Enter Anything Back To Menu:");
+        char stop = new Scanner(System.in).next().charAt(0);
+        
+    }
     
     public static double getActionPrice() 
     {
@@ -330,6 +338,40 @@ public class Ticket
     {
         Ticket.comedyPrice = comedyPrice;
     }
+//
+    public ArrayList<HallSeat> getHallSeat() {
+        return hallSeat;
+    }
+
+    public void setHallSeat(ArrayList<HallSeat> hallSeat) {
+        this.hallSeat = hallSeat;
+    }
+
+    public double getTotalTicketPrice() {
+        return totalTicketPrice;
+    }
+
+    public void setTotalTicketPrice(double totalTicketPrice) {
+        this.totalTicketPrice = totalTicketPrice;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getCustomerPaymentType() {
+        return customerPaymentType;
+    }
+
+    public void setCustomerPaymentType(String customerPaymentType) {
+        this.customerPaymentType = customerPaymentType;
+    }
+    
+//    
     
     private static void readSeatFile()
     {
@@ -352,8 +394,6 @@ public class Ticket
         }
     }
      
-   
-    
     public  static void clearScreen() 
     {
         try{
@@ -376,6 +416,12 @@ public class Ticket
 		 e.printStackTrace();
 	 }
     
+    }
+    
+
+    public String toString()
+    {
+        return String.format("%s %-10s %-7.2f %-20s %-13s", movie, hallSeat, totalTicketPrice, date, customerPaymentType);
     }
 }
 

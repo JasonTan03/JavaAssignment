@@ -4,7 +4,6 @@
  */
 package BookingModule;
 
-import static BookingModule.Ticket.Seat;
 import java.util.Scanner;
 /**
  *
@@ -26,7 +25,7 @@ public class HallSeat
         this.mvColumn = mvColumn;
     }
     
-    public void enterRow()
+    public char enterRow()
     {
         char rowToUpper;
         do 
@@ -42,8 +41,11 @@ public class HallSeat
         }
         
         } while (checkRowSeat(rowToUpper)== false);
-        
-        int mvColumn;
+        return rowToUpper;  
+    }
+    public int enterColumn()
+    {
+           int mvColumn;
         do 
         {            
         System.out.print("Enter Column For Seat(1 - 14): ");
@@ -55,9 +57,10 @@ public class HallSeat
         
         } while (checkColumnSeat(mvColumn)== false);
         
-        Seat.add(new HallSeat(rowToUpper,mvColumn));
+        return mvColumn;
         
     }
+
 
     
     public boolean checkRowSeat(char rowToUpper)

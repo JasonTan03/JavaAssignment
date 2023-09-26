@@ -282,18 +282,29 @@ public final class TicketingSystem{
     
     public static void BookingModule() throws CloneNotSupportedException
     {
-           Scanner sc = new Scanner(System.in);
-        System.out.println("1. Booking System\n2. Sales Report");
-        int num = sc.nextInt();
+        System.out.println("--------------------------");
+        System.out.println("      <Booking MODULE>     ");
+        System.out.println("--------------------------");
+        System.out.println("    1.Booking System");
+        System.out.println("    2.Sales Record");
+        System.out.println("    3.Exit");
+        System.out.println("--------------------------");
         
+        System.out.print("\nEnter Number:");
+        int num = new Scanner(System.in).nextInt();
+          
         switch (num) {
             case 1:
                     BookingModule.Ticket.bookingTicket();
+                    break;
                     
             case 2:
-                    //BookingModule.Ticket.displayBookingRecord();
+                    BookingModule.Ticket.bookingRecord();
+                    break;
+                    
+            case 3:
+                    return;
                 
-                break;
             default:
                 
         }
@@ -315,4 +326,6 @@ public final class TicketingSystem{
         System.out.println("============================================================================");
         System.out.println("                               Please Login ");
     }
+    
+   
 }

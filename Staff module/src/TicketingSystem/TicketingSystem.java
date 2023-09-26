@@ -291,7 +291,7 @@ public final class TicketingSystem{
                     BookingModule.Ticket.bookingTicket();
                     
             case 2:
-                    BookingModule.Ticket.displayBookingRecord();
+                    //BookingModule.Ticket.displayBookingRecord();
                 
                 break;
             default:

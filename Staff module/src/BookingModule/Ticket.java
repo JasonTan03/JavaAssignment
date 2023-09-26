@@ -27,11 +27,11 @@ public class Ticket
     private double totalTicketPrice;
     private String date;
     private String customerPaymentType;
-    private static int actionPrice;
-    private static int horrorPrice;
-    private static int romancePrice;
-    private static int crimePrice;
-    private static int comedyPrice;
+    private static double actionPrice = 15.00;
+    private static double horrorPrice = 15.00;
+    private static double romancePrice = 18.00;
+    private static double crimePrice = 20.00;
+    private static double comedyPrice = 20.00;
 
     public Ticket(Movie movie, ArrayList<HallSeat> hallSeat, double totalTicketPrice, String customerPaymentType) 
     {
@@ -45,12 +45,6 @@ public class Ticket
     public static void bookingTicket() throws CloneNotSupportedException
     {
         clearScreen();
-        setActionPrice(15);
-        setComedyPrice(15);
-        setCrimePrice(18);
-        setHorrorPrice(20);
-        setRomancePrice(20);
-        
         Movie mvSelected;
         Scanner bkt = new Scanner(System.in); 
         ArrayList<HallSeat> Seat = new ArrayList<>();
@@ -169,107 +163,89 @@ public class Ticket
                   System.out.println("Wrong Input !!!");  
                 }
         
-            }while(cfm != 'Y' && cfm != 'N');
-            
-             
+            }while(cfm != 'Y' && cfm != 'N'); 
     }
-    
     
     public static double checkMember(int numberOfSeat, Movie mvSelected)
     {
         int i;
         int y;
-        String memberLvString;
         double totalP = 0.0;
         
         do {
-        i = 0;
-        System.out.print("Member or Non-member(Y / N): ");
-        char confirmYN = new Scanner(System.in).next().charAt(0);
-        char confirmToUpper = Character.toUpperCase(confirmYN);
+            i = 0;
+            System.out.print("Member or Non-member(Y / N): ");
+            char confirmYN = new Scanner(System.in).next().charAt(0);
+            char confirmToUpper = Character.toUpperCase(confirmYN);
 
-        if(confirmToUpper == 'Y')
-        {
-            y = 0;
-            System.out.print("Enter Member ID: ");
-            String inputMemberId = new Scanner(System.in).next();
-            
-            for(int m = 0; m < members.size(); m++)
+            if(confirmToUpper == 'Y')
             {
-                if(inputMemberId.equals(members.get(m).getMemberID()))
-                {    
-                    memberLvString = members.get(m).getMranks().getRanks();
-                    if(memberLvString == "Normal")
-                    {
-                        return totalP =  payment(numberOfSeat, mvSelected.getGenre()) * 0.95 ;
-                       
-                    }
-                    else if(memberLvString == "Silver")
-                    { 
-                       return totalP =  payment(numberOfSeat, mvSelected.getGenre()) * 0.9;
-                       
-                    }
-                    else if(memberLvString == "Gold")
-                    {
-                        return totalP = payment(numberOfSeat, mvSelected.getGenre()) * 0.85;
-                        
+                y = 0;
+                System.out.print("Enter Member ID: ");
+                String inputMemberId = new Scanner(System.in).next();
+
+                for(int m = 0; m < members.size(); m++)
+                {
+                    if(inputMemberId.equalsIgnoreCase(members.get(m).getMemberID()))
+                    {    
+                        String memberLvString = members.get(m).getMranks().getRanks();
+                        switch (memberLvString.toLowerCase()) {
+                            case "normal":
+                                totalP = payment(numberOfSeat, mvSelected.getGenre());
+                                return totalP * 0.95;
+                            case "silver":
+                                totalP = payment(numberOfSeat, mvSelected.getGenre());
+                                return totalP * 0.9;
+                            case "gold":
+                                totalP = payment(numberOfSeat, mvSelected.getGenre());
+                                return totalP * 0.85;
+                        }
                     }
 
-                    y = 1;
-                    break;
+                    if(y == 0)
+                    {
+                        System.out.println("Member ID not Valid!!!");
+                        i += 1;
+                    }
                 }
-                
-                if(y == 0)
-                {
-                    System.out.println("Member ID not Valid!!!");
-                    i += 1;
-                }
-                
             }
-     
-        }
-        else if(confirmToUpper == 'N')
-        {
-            return totalP = payment(numberOfSeat, mvSelected.getGenre()); 
-        }
-        else
-        {
-            System.out.print("Wrong Input!!!");
-            i += 1;
-        }
-        
-        } while (i == 1);
-        
-        return totalP;
+            else if(confirmToUpper == 'N')
+            {
+                return totalP = payment(numberOfSeat, mvSelected.getGenre());
+            }
+            else
+            {
+                System.out.print("Wrong Input!!!");
+                i += 1;
+            }
+
+        } while (i == 0);
+        return 0;
     }
     
     public static double payment(int numberOfSeat, String mvSelected)
     {
-        double priceBeforeDiscount = 0;
         
         if(mvSelected.equalsIgnoreCase("action") )
         {
-            priceBeforeDiscount = numberOfSeat * actionPrice;
+            return numberOfSeat * actionPrice;
         }
         else if(mvSelected.equalsIgnoreCase("horror"))
         {
-            priceBeforeDiscount = numberOfSeat * horrorPrice;
+            return numberOfSeat * horrorPrice;        
         }
         else if(mvSelected.equalsIgnoreCase("romance"))
         {
-            priceBeforeDiscount = numberOfSeat * romancePrice;
+            return numberOfSeat * romancePrice;        
         }
         else if(mvSelected.equalsIgnoreCase("crime"))
         {
-            priceBeforeDiscount = numberOfSeat * crimePrice;
+            return numberOfSeat * crimePrice;        
         }
-        else if(mvSelected.equalsIgnoreCase("comedy"))
+        else
         {
-            priceBeforeDiscount = numberOfSeat * comedyPrice;
+            return numberOfSeat * comedyPrice;        
         }
-        
-         
-        return priceBeforeDiscount;
         
     }
     
@@ -301,54 +277,47 @@ public class Ticket
         return customerPayType;
     }
     
-    public static void displayBookingRecord()
-    {
-        for(int i = 0; i < TicketSales.size(); i++ )
-        {
-            System.out.println(TicketSales.get(i).toString());
-        }
-    }
-    public static int getActionPrice() 
+    public static double getActionPrice() 
     {
         return actionPrice;
     }
 
-    public static void setActionPrice(int actionPrice) 
+    public static void setActionPrice(double actionPrice) 
     {
         Ticket.actionPrice = actionPrice;
     }
 
-    public static int getHorrorPrice() 
+    public static double getHorrorPrice() 
     {
         return horrorPrice;
     }
 
-    public static void setHorrorPrice(int horrorPrice) 
+    public static void setHorrorPrice(double horrorPrice) 
     {
         Ticket.horrorPrice = horrorPrice;
     }
 
-    public static int getRomancePrice() 
+    public static double getRomancePrice() 
     {
         return romancePrice;
     }
 
-    public static void setRomancePrice(int romancePrice) 
+    public static void setRomancePrice(double romancePrice) 
     {
         Ticket.romancePrice = romancePrice;
     }
 
-    public static int getCrimePrice() 
+    public static double getCrimePrice() 
     {
         return crimePrice;
     }
 
-    public static void setCrimePrice(int crimePrice) 
+    public static void setCrimePrice(double crimePrice) 
     {
         Ticket.crimePrice = crimePrice;
     }
 
-    public static int getComedyPrice() 
+    public static double getComedyPrice() 
     {
         return comedyPrice;
     }
@@ -379,6 +348,8 @@ public class Ticket
         }
     }
      
+   
+    
     public  static void clearScreen() 
     {
         try{
@@ -401,12 +372,6 @@ public class Ticket
 		 e.printStackTrace();
 	 }
     
-    }
-    
-    public String toString()
-    {
-        //return String.format("%s",movie.getMovieName(), movie.getGenre(), movie.getRunTime(), movie.getPremierDate());
-            return String.format("%s %s %.2lf %s %s",movie, hallSeat, totalTicketPrice, date, customerPaymentType);
     }
 }
 

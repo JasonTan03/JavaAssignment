@@ -278,9 +278,21 @@ public final class TicketingSystem{
     public static void BookingModule() throws CloneNotSupportedException
     {
            Scanner sc = new Scanner(System.in);
-        System.out.print("Enter 1:");
+        System.out.println("1. Booking System\n2. Sales Report");
         int num = sc.nextInt();
-            BookingModule.Ticket.bookingTicket();
+        
+        switch (num) {
+            case 1:
+                    BookingModule.Ticket.bookingTicket();
+                    
+            case 2:
+                    BookingModule.Ticket.displayBookingRecord();
+                
+                break;
+            default:
+                
+        }
+            
 
     }
     public static void Logo(){

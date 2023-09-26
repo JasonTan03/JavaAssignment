@@ -174,6 +174,7 @@ public class Ticket
              
     }
     
+    
     public static double checkMember(int numberOfSeat, Movie mvSelected)
     {
         int i;
@@ -182,7 +183,6 @@ public class Ticket
         double totalP = 0.0;
         
         do {
-        int memberLv = 0;
         i = 0;
         System.out.print("Member or Non-member(Y / N): ");
         char confirmYN = new Scanner(System.in).next().charAt(0);
@@ -196,23 +196,25 @@ public class Ticket
             
             for(int m = 0; m < members.size(); m++)
             {
-                if(inputMemberId.equalsIgnoreCase(members.get(m).getMemberID()))
+                if(inputMemberId.equals(members.get(m).getMemberID()))
                 {    
                     memberLvString = members.get(m).getMranks().getRanks();
-                    if(memberLvString.toLowerCase() == "normal")
+                    if(memberLvString == "Normal")
                     {
-                        memberLv = 1;
+                        return totalP =  payment(numberOfSeat, mvSelected.getGenre()) * 0.95 ;
+                       
                     }
-                    else if(memberLvString.toLowerCase() == "silver")
+                    else if(memberLvString == "Silver")
+                    { 
+                       return totalP =  payment(numberOfSeat, mvSelected.getGenre()) * 0.9;
+                       
+                    }
+                    else if(memberLvString == "Gold")
                     {
-                        memberLv = 2;
+                        return totalP = payment(numberOfSeat, mvSelected.getGenre()) * 0.85;
+                        
                     }
-                    else if(memberLvString.toLowerCase() == "Gold")
-                    {
-                        memberLv = 3;
-                    }
-                     
-                    totalP = payment(numberOfSeat, mvSelected.getGenre(), memberLv);
+
                     y = 1;
                     break;
                 }
@@ -224,15 +226,11 @@ public class Ticket
                 }
                 
             }
-            
-           
-            
+     
         }
         else if(confirmToUpper == 'N')
         {
-            memberLv = 0;
-            totalP = payment(numberOfSeat, mvSelected.getGenre(), memberLv);
-            
+            return totalP = payment(numberOfSeat, mvSelected.getGenre()); 
         }
         else
         {
@@ -245,10 +243,9 @@ public class Ticket
         return totalP;
     }
     
-    public static double payment(int numberOfSeat, String mvSelected, int memberLv)
+    public static double payment(int numberOfSeat, String mvSelected)
     {
-        int priceBeforeDiscount = 0;
-        double priceAfterDiscount = 0;
+        double priceBeforeDiscount = 0;
         
         if(mvSelected.equalsIgnoreCase("action") )
         {
@@ -271,24 +268,8 @@ public class Ticket
             priceBeforeDiscount = numberOfSeat * comedyPrice;
         }
         
-        if(memberLv == 0)
-        {
-            priceAfterDiscount += priceBeforeDiscount;
-        }
-        else if(memberLv == 1)
-        {
-            priceAfterDiscount = priceBeforeDiscount * 0.95;
-        }
-        else if(memberLv == 2)
-        {
-            priceAfterDiscount = priceAfterDiscount * 0.9;
-        }
-        else if(memberLv == 3)
-        {
-            priceAfterDiscount = priceBeforeDiscount * 0.85;
-        }
          
-        return priceAfterDiscount;
+        return priceBeforeDiscount;
         
     }
     
@@ -320,6 +301,13 @@ public class Ticket
         return customerPayType;
     }
     
+    public static void displayBookingRecord()
+    {
+        for(int i = 0; i < TicketSales.size(); i++ )
+        {
+            System.out.println(TicketSales.get(i).toString());
+        }
+    }
     public static int getActionPrice() 
     {
         return actionPrice;
@@ -391,8 +379,6 @@ public class Ticket
         }
     }
      
-   
-    
     public  static void clearScreen() 
     {
         try{
@@ -415,6 +401,12 @@ public class Ticket
 		 e.printStackTrace();
 	 }
     
+    }
+    
+    public String toString()
+    {
+        //return String.format("%s",movie.getMovieName(), movie.getGenre(), movie.getRunTime(), movie.getPremierDate());
+            return String.format("%s %s %.2lf %s %s",movie, hallSeat, totalTicketPrice, date, customerPaymentType);
     }
 }
 

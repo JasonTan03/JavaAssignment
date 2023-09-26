@@ -33,6 +33,9 @@ public class Ticket
     private static double crimePrice = 20.00;
     private static double comedyPrice = 20.00;
 
+    
+    public static ArrayList<HallSeat> Seat = new ArrayList<>();
+    
     public Ticket(Movie movie, ArrayList<HallSeat> hallSeat, double totalTicketPrice, String customerPaymentType) 
     {
         this.movie = movie;
@@ -47,7 +50,6 @@ public class Ticket
         clearScreen();
         Movie mvSelected;
         Scanner bkt = new Scanner(System.in); 
-        ArrayList<HallSeat> Seat = new ArrayList<>();
         HallSeat temp = new HallSeat();
         char cfm;
         double totalPriceAfterDiscount;
@@ -71,7 +73,7 @@ public class Ticket
                System.out.println("No." + (i+1) + " Seat Position: ");
                
                temp.enterRow();
-               Seat.add(temp);
+               //Seat.add(temp);
                
                
            }
@@ -276,6 +278,8 @@ public class Ticket
         
         return customerPayType;
     }
+    
+    
     
     public static double getActionPrice() 
     {

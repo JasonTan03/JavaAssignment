@@ -6,6 +6,7 @@
 
 
 package MemberModule;
+import TicketingSystem.ClearScreen;
 import java.util.Scanner;
 
 import static TicketingSystem.TicketingSystem.members;
@@ -79,6 +80,7 @@ public static void wait(int sec){
 }
 
 public static void displayMember(){
+    ClearScreen.cls();
     System.out.println("\n\n                                       List of Member");
     System.out.println("-----------------------------------------------------------------------------------------------------------");
     System.out.println(" Member ID\t MemberName\t Gender\t       MemberRank\t Status\t      Join Date");
@@ -91,6 +93,7 @@ public static void displayMember(){
 }
 
 public static void addMember(){
+    ClearScreen.cls();
     Scanner addM = new Scanner(System.in);
     
     while(true){
@@ -162,12 +165,22 @@ public static void addMember(){
     }
 }
     public static void modifyMember(){
+        ClearScreen.cls();
         Scanner modM = new Scanner(System.in);
         
         while(true){
             int match = -1;
             int matchID = 0;
-            System.out.print("Select member to modify :");
+            System.out.println("\n\n                                       List of Member");
+            System.out.println("-----------------------------------------------------------------------------------------------------------");
+            System.out.println(" Member ID\t MemberName\t Gender\t       MemberRank\t Status\t      Join Date");
+            System.out.println("-----------------------------------------------------------------------------------------------------------");
+            for (int i=0;i<members.size();i++){
+            System.out.println(members.get(i).toString());
+            }
+            System.out.println("-----------------------------------------------------------------------------------------------------------");
+            
+            System.out.print("                                       Select member to modify :");
             String MMemberId = modM.next();
             for(int i = 0; i < members.size();i++){
                 if(MMemberId.equals(members.get(i).getMemberID())){
@@ -176,7 +189,7 @@ public static void addMember(){
                 }
             }
             if(match == -1){
-                System.out.println("Invalid MemberID");
+                System.out.println("                                        Invalid MemberID");
             }
             else
             {
@@ -266,6 +279,7 @@ public static void addMember(){
     } 
     
    public static void searchMember(){
+       ClearScreen.cls();
        Scanner srcM = new Scanner(System.in);
        int ch,MSearch;
        
@@ -423,11 +437,21 @@ public static void addMember(){
     }
    
    public static void deleteMember(){
+       ClearScreen.cls();
        Scanner delM = new Scanner(System.in);
        int MSearch,delete = 0, i =0;
        do{
            MSearch = -1;
            try{
+            System.out.println("\n\n                                       List of Member");
+            System.out.println("-----------------------------------------------------------------------------------------------------------");
+            System.out.println(" Member ID\t MemberName\t Gender\t       MemberRank\t Status\t      Join Date");
+            System.out.println("-----------------------------------------------------------------------------------------------------------");
+            for (int j=0;j<members.size();j++){
+            System.out.println(members.get(i).toString());
+            }
+            System.out.println("-----------------------------------------------------------------------------------------------------------");
+            
                System.out.print("<Delete Member>");
                System.out.print("\nEnter MemberId to delete(X to exit):");
                String delMemID = delM.next();

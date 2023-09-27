@@ -174,8 +174,10 @@ public final class TicketingSystem{
         }
     }
     public static void MemberModule(){
+   
     Scanner sel = new Scanner(System.in);
     while(true){
+        ClearScreen.cls();
         System.out.println("--------------------------");
         System.out.println("      <MEMBER MODULE>     ");
         System.out.println("--------------------------");

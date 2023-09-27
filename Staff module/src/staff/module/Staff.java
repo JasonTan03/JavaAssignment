@@ -4,6 +4,7 @@
  */
 package staff.module;
 
+import TicketingSystem.ClearScreen;
 import java.util.Scanner;
 import static TicketingSystem.TicketingSystem.jobList;
 import static TicketingSystem.TicketingSystem.staffList;
@@ -17,7 +18,6 @@ public class Staff extends Person{
     private String staffID;
     private JobTitle jobTitle;
     private String password;
-    //private int loginAmount;
     private static int maxStaffID = 1000;
     private boolean isManager;
     private static int currentStaff = 0;
@@ -110,17 +110,17 @@ public class Staff extends Person{
                             {
                                 if(staffList.get(j).getIsManager()){
                                     matchPassword = 1;
-                                    System.out.println("\nLogin Succesful as Manager\n");
+                                    System.out.println("\nLogin Succesful as Manager.\n");
                                     return true;
                                 }else{
                                     matchPassword = 1;
-                                    System.out.println("\nLogin Succesful\n");
+                                    System.out.println("\nLogin Succesful.\n");
                                     return true;
                                 }
                             }
                         if(matchPassword == -1)
                         {
-                            System.out.println("\nIncorrect password, Please enter again");
+                            System.out.println("\nIncorrect password, Please enter again.");
                         }
                     }
                 }
@@ -130,7 +130,7 @@ public class Staff extends Person{
     }
     
     public static void displayStaff(){
-        System.out.println("\n\n                                                 List of Staff");
+        System.out.println("\n                                                 List of Staff");
         System.out.println("===================================================================================================================");
         System.out.println("Staff ID \t Staff Name \t   Gender \t   Join Date \t    Position \t    Salary(RM) \t      Shift");
         System.out.println("===================================================================================================================");
@@ -153,7 +153,7 @@ public class Staff extends Person{
             
             char gender = 0;
             while(true){
-                System.out.print("\nEnter gender : ");
+                System.out.print("\nEnter gender (M = Male/F = Female) : ");
                 String tempGender = input.next().toUpperCase();
                 if(tempGender.length()>1){
                     System.out.println("\nInvalid Gender Please Enter Again.\n");
@@ -243,7 +243,7 @@ public class Staff extends Person{
             else
             {
                 staffList.add(new Staff(name, gender, joinDate,jobList.get(choice-1),password, false));
-                System.out.println("New Staff Added!");
+                System.out.println("\nNew Staff Added!");
             }
             
             do{
@@ -274,8 +274,12 @@ public class Staff extends Person{
             displayStaff();
             int matchSearch = -1;
             int matchID = 0;
-            System.out.print("Select staff to be modify : ");
+            System.out.print("Select staff to be modify (Enter X to Exit) : ");
             String findStaffId = input.next();
+            if((findStaffId.toUpperCase()).equals("X"))
+            {
+                break;
+            }
             for (int i=0; i<staffList.size(); i++) 
             {
                 if (findStaffId.equals(staffList.get(i).getStaffID())) 
@@ -507,7 +511,7 @@ public class Staff extends Person{
                         try{
                             System.out.print("Enter Staff Id (Enter X to exit) : ");
                             String findStaffId = input.next();
-                            if(findStaffId.equals("X"))
+                            if((findStaffId.toUpperCase()).equals("X"))
                             {
                                 break;
                             }
@@ -670,7 +674,7 @@ public class Staff extends Person{
                             if(findStaffShift.length()>1 || Character.isAlphabetic(findStaffShift.charAt(0))){
                                 System.out.println("\nInvalid Option Please Select Again!\n");
                             }else{
-                                int findShift = Integer.parseInt(findStaffShift);
+                                int findShift = Integer.parseInt(findStaffShift)-1;
                                 String shift = jobList.get(findShift).getShift();
                                 for (int i=0; i<staffList.size(); i++) 
                                 {
@@ -695,6 +699,7 @@ public class Staff extends Person{
     public static void deleteStaff(){
         Scanner input = new Scanner(System.in);
         int matchSearch, delete = 0, i = 0;
+        displayStaff();
         do{
             matchSearch = -1;
             try{
@@ -712,11 +717,10 @@ public class Staff extends Person{
                         matchSearch = 1;
                     }
                 }
-                displaySearch(i);
+                displaySearch(delete);
             }catch(Exception e) {}
             validation(matchSearch);
         }while(matchSearch == -1);
-        displaySearch(matchSearch);
         System.out.print("Are You Sure to Delete This Staff? (Y/N) : ");
         do{
             char comfrim = input.next().charAt(0);
@@ -724,9 +728,10 @@ public class Staff extends Person{
                 break;
             }else if(Character.toUpperCase(comfrim) == 'Y'){
                 staffList.remove(delete);
-                System.out.println("Staff has been Deleted.");
-                System.out.println("Updated Staff List");
+                System.out.println("\nStaff has been Deleted.");
+                System.out.println("Updated Staff List.");
                 Staff.displayStaff();
+                ClearScreen.wait(2);
             }else{
                 System.out.println("\nInvalid Option Please Enter Again! ");
             }             
@@ -735,7 +740,7 @@ public class Staff extends Person{
     }
     
     public static void displayPassword(){
-        System.out.println("\n\n      Staff Password");
+        System.out.println("\n\n                 Staff Password");
         System.out.println("==================================================");
         System.out.println("Staff ID \t Staff Name \t    Password");
         System.out.println("==================================================");
@@ -760,7 +765,7 @@ public class Staff extends Person{
         System.out.println("Staff Join Date : " + staffList.get(matchSearch).getJD());
         System.out.println("Staff Position  : " + staffList.get(matchSearch).getJobTitle().getPosition());
         System.out.println("Staff Salary    : " + staffList.get(matchSearch).getJobTitle().getSalary());
-        System.out.println("Staff Name      : " + staffList.get(matchSearch).getJobTitle().getShift());
+        System.out.println("Staff Shift     : " + staffList.get(matchSearch).getJobTitle().getShift());
         System.out.println("===========================================");
     }
 }

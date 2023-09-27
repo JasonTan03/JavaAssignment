@@ -8,12 +8,8 @@ import BookingModule.Ticket;
 import MemberModule.Member;
 import MemberModule.mRanks;
 import MovieModule.Movie;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -36,40 +32,49 @@ public final class TicketingSystem{
         readMemberModuleFile();
         readStaffModuleFile();
         Movie.readMovieList();
-        int choice;
-        Logo();
-        boolean login = Staff.login();
-        if(login){
-            
-            
-            
-            do{
-                System.out.println("1.Staff");
-            System.out.println("2.Member");
-            System.out.println("3.Booking");
-            System.out.println("4.Movie");
-            System.out.println("5.Exit");
-            System.out.print("Enter your choice:");
-            choice = new Scanner(System.in).nextInt();
-            
-            switch(choice)
-            {
-                
-                case 1:StaffModule();break;
-                
-                case 2:MemberModule();break;
-                
-                case 3:BookingModule();break;
-                
-                case 4:MovieModule();break;
-                
-                case 5:break;
-                
-                default:System.out.println("Invalid choice.");
+        while(true){
+            ClearScreen.cls();
+            int choice;
+            Logo();
+            System.out.println("                               Please Login ");
+            boolean login = Staff.login();
+            ClearScreen.wait(2);
+            if(login){
+                do{
+                    ClearScreen.cls();
+                    Logo();
+                    System.out.println("    TGB TICKETING SYSTEM");
+                    System.out.println("============================");
+                    System.out.println("1.    Staff   Module");
+                    System.out.println("2.    Member  Module");
+                    System.out.println("3.    Booking Module");
+                    System.out.println("4.    Movie   Module");
+                    System.out.println("5.       Log  out");
+                    System.out.println("6.         Exit");
+                    System.out.println("============================");
+                    System.out.print("Enter your choice : ");
+                choice = new Scanner(System.in).nextInt();
+
+                switch(choice)
+                {
+
+                    case 1:ClearScreen.cls();StaffModule();break;
+
+                    case 2:MemberModule();break;
+
+                    case 3:BookingModule();break;
+
+                    case 4:MovieModule();break;
+
+                    case 5:break;
+                    
+                    case 6:return;
+
+                    default:System.out.println("Invalid choice.");
+                }
+                }while(choice !=5);
+
             }
-            }while(choice !=5);
-            
-  
         }
     }
     public static void readMemberModuleFile() throws FileNotFoundException{
@@ -142,28 +147,30 @@ public final class TicketingSystem{
                 }
             }while(valid == -1);
             switch(opt){
-                case '1': Staff.displayStaff();
+                case '1': ClearScreen.cls();Staff.displayStaff();
                     break;
                 
-                case '2': Staff.searchStaff();
+                case '2': ClearScreen.cls();Staff.searchStaff();ClearScreen.cls();
                     break;
                 
-                case '3': Staff.modifyStaff();
+                case '3': ClearScreen.cls();Staff.modifyStaff();ClearScreen.cls();
                     break;
                 
-                case '4': Staff.addStaff();
+                case '4': ClearScreen.cls();Staff.addStaff();ClearScreen.cls();
                     break;
                 
                 case '5': 
-                    if(staffList.get(cStaff).getIsManager() == true)
-                        Staff.deleteStaff();
+                    if(staffList.get(cStaff).getIsManager() == true){
+                        ClearScreen.cls();Staff.deleteStaff();
+                    }
                     else
                         System.out.println("\nAccess Denied, User Need to Login As Manager!\n");
                     break;
                 
                 case '6': 
-                    if(staffList.get(cStaff).getIsManager() == true)
-                        Staff.displayPassword();
+                    if(staffList.get(cStaff).getIsManager() == true){
+                        ClearScreen.cls();Staff.displayPassword();
+                    }
                     else
                         System.out.println("\nAccess Denied, User Need to Login As Manager!\n");
                     break;
@@ -327,7 +334,7 @@ public final class TicketingSystem{
         System.out.println("============================================================================");
         System.out.println("                          WELCOME TO TGB CINEMA");
         System.out.println("============================================================================");
-        System.out.println("                               Please Login ");
+        
     }
     
    

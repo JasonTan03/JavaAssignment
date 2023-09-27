@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/staff/module/EmployeeDetail.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>15</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/staff/module/Person.java</file>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/MemberModule/mRanks.java</file>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/staff/module/JobTitle.java</file>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/BookingModule/Ticket.java</file>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/BookingModule/HallSeat.java</file>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/TicketingSystem/TicketingSystem.java</file>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/MemberModule/Member.java</file>
-            <file>file:/C:/Users/Ai/Documents/NetBeansProjects/Staff%20module/src/staff/module/Staff.java</file>
+            <file>file:/C:/Users/teren/OneDrive/Documents/NetBeansProjects/OOP%20ASSIGNMENT/src/MovieModule/Movie.java</file>
+            <file>file:/C:/Users/teren/OneDrive/Documents/NetBeansProjects/OOP%20ASSIGNMENT/src/BookingModule/Ticket.java</file>
+            <file>file:/C:/Users/teren/OneDrive/Documents/NetBeansProjects/OOP%20ASSIGNMENT/src/TicketingSystem/TicketingSystem.java</file>
+            <file>file:/C:/Users/teren/OneDrive/Documents/NetBeansProjects/OOP%20ASSIGNMENT/src/staff/module/Staff.java</file>
         </group>
     </open-files>
 </project-private>

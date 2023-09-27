@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package BookingModule;
+import MemberModule.mRanks;
 import static TicketingSystem.TicketingSystem.members;
 import static TicketingSystem.TicketingSystem.TicketSales;
 import MovieModule.Movie;
@@ -27,19 +28,22 @@ public class Ticket
     private double totalTicketPrice;
     private String date;
     private String customerPaymentType;
+    private int numOfSeat;
+    private String memberRank;
     private static double actionPrice = 15.00;
     private static double horrorPrice = 15.00;
     private static double romancePrice = 18.00;
     private static double crimePrice = 20.00;
     private static double comedyPrice = 20.00;
     
-    public Ticket(Movie movie, ArrayList<HallSeat> hallSeat, double totalTicketPrice, String customerPaymentType) 
+    public Ticket(Movie movie, ArrayList<HallSeat> hallSeat, double totalTicketPrice, String customerPaymentType, int numOfSeat) 
     {
         this.movie = movie;
         this.hallSeat = hallSeat;
         this.totalTicketPrice = totalTicketPrice;
         this.date = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss").format(Calendar.getInstance().getTime());
         this.customerPaymentType = customerPaymentType;
+        this.numOfSeat = numOfSeat;
     }
     
     public static void bookingTicket() throws CloneNotSupportedException
@@ -93,6 +97,7 @@ public class Ticket
                 if(cfm == 'Y')
                 {
                    totalPriceAfterDiscount = checkMember(numberOfSeat, mvSelected);
+                  
                    clearScreen();
                    System.out.println("Ticket(s) Price is(are): "+ "RM " +totalPriceAfterDiscount);
                    paymentType = customerPayType(); 
@@ -143,7 +148,7 @@ public class Ticket
                        
                    }
                    
-                   TicketSales.add(new Ticket(mvSelected,Seat,totalPriceAfterDiscount, paymentType));
+                   TicketSales.add(new Ticket(mvSelected,Seat,totalPriceAfterDiscount, paymentType, numberOfSeat));
                    clearScreen();
                        System.out.println("   _                              _\n" +
                                          " ('v')                          ('v')\n" +
@@ -152,7 +157,7 @@ public class Ticket
                                          " ^^ ^^                          ^^ ^^");   
                        wait(5);
                        clearScreen();
-                       break;
+                       return;
                 }
              else if(cfm == 'N')
                 {
@@ -280,11 +285,15 @@ public class Ticket
     
     public static void bookingRecord()
     {
+        System.out.println("\n===========================================================================================================================================================================================");
+        System.out.println("           Movie Name                   Genre      Action Date      Runtime   Number of Seat     Total Payment(RM)     Payment Date(Time)       Payment Type     Seat Position");
+        System.out.println("===========================================================================================================================================================================================");
         for(int i = 0; i < TicketSales.size(); i++)
         {
             System.out.println("No." + (i+1)+ TicketSales.get(i).toString());
         }
-        System.out.println("Enter Anything Back To Menu:");
+        System.out.println("===========================================================================================================================================================================================");
+        System.out.print("\n\nEnter Anything Back To Menu:");
         char stop = new Scanner(System.in).next().charAt(0);
         
     }
@@ -338,40 +347,6 @@ public class Ticket
     {
         Ticket.comedyPrice = comedyPrice;
     }
-//
-    public ArrayList<HallSeat> getHallSeat() {
-        return hallSeat;
-    }
-
-    public void setHallSeat(ArrayList<HallSeat> hallSeat) {
-        this.hallSeat = hallSeat;
-    }
-
-    public double getTotalTicketPrice() {
-        return totalTicketPrice;
-    }
-
-    public void setTotalTicketPrice(double totalTicketPrice) {
-        this.totalTicketPrice = totalTicketPrice;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getCustomerPaymentType() {
-        return customerPaymentType;
-    }
-
-    public void setCustomerPaymentType(String customerPaymentType) {
-        this.customerPaymentType = customerPaymentType;
-    }
-    
-//    
     
     private static void readSeatFile()
     {
@@ -421,7 +396,7 @@ public class Ticket
 
     public String toString()
     {
-        return String.format("%s %-10s %-7.2f %-20s %-13s", movie, hallSeat, totalTicketPrice, date, customerPaymentType);
+        return String.format("%s          %-15d %-12.2f %-25s %-15s %s", movie, numOfSeat, totalTicketPrice, date, customerPaymentType, hallSeat);
     }
 }
 

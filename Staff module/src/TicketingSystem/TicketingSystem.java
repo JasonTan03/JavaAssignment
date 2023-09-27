@@ -288,8 +288,7 @@ public final class TicketingSystem{
         System.out.println("--------------------------");
         System.out.println("    1.Booking System");
         System.out.println("    2.Daily Sales Record");
-        System.out.println("    3.Sales Report");
-        System.out.println("    4.Exit");
+        System.out.println("    3.Exit");
         System.out.println("--------------------------");
         
         System.out.print("\nEnter Number: ");
@@ -304,12 +303,7 @@ public final class TicketingSystem{
                     BookingModule.Ticket.bookingRecord();
                     break;
                     
-            case 3:
-                
-                break;
-                
-                
-            case 4:    
+            case 3:   
                     return;
                 
             default:

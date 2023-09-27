@@ -86,7 +86,7 @@ public class Movie implements Cloneable{
     
     @Override
     public String toString() {
-        return String.format("   %-32s %-11s %-18s %-2d", movieName, genre, premierDate, runTime);
+        return String.format("   %-32s %-11s %-18s %-4d", movieName, genre, premierDate, runTime);
     }
 
     //function

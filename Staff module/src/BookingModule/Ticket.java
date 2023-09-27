@@ -59,7 +59,7 @@ public class Ticket
         
         Seat.clear();
         Movie.displayMovie();
-        System.out.print("Select Movie:");
+        System.out.print("Select Movie: ");
         int mvSelection = bkt.nextInt();
         mvSelection--;
         mvSelected = (Movie)moviesList.get(mvSelection).clone();
@@ -285,15 +285,17 @@ public class Ticket
     
     public static void bookingRecord()
     {
+        clearScreen();
         System.out.println("\n===========================================================================================================================================================================================");
-        System.out.println("           Movie Name                   Genre      Action Date      Runtime   Number of Seat     Total Payment(RM)     Payment Date(Time)       Payment Type     Seat Position");
+        System.out.println("           Movie Name                   Genre      Action Date      Runtime     Number of Seat     Total Payment(RM)       Payment Date(Time)       Payment Type     Seat Position");
         System.out.println("===========================================================================================================================================================================================");
         for(int i = 0; i < TicketSales.size(); i++)
         {
             System.out.println("No." + (i+1)+ TicketSales.get(i).toString());
+            
         }
         System.out.println("===========================================================================================================================================================================================");
-        System.out.print("\n\nEnter Anything Back To Menu:");
+        System.out.print("\n\nEnter Anything Back To Menu: ");
         char stop = new Scanner(System.in).next().charAt(0);
         
     }
@@ -396,7 +398,7 @@ public class Ticket
 
     public String toString()
     {
-        return String.format("%s          %-15d %-12.2f %-25s %-15s %s", movie, numOfSeat, totalTicketPrice, date, customerPaymentType, hallSeat);
+        return String.format("%s            %-16d %-18.2f %-25s %-15s %s", movie, numOfSeat, totalTicketPrice, date, customerPaymentType, hallSeat);
     }
 }
 

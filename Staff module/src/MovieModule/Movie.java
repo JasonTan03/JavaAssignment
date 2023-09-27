@@ -111,7 +111,6 @@ public class Movie implements Cloneable{
                     int runtime = Integer.parseInt(read[5]);
                     
                     moviesList.add(new Movie(read[0],read[1],new Date(day,month,year),runtime));
-                    movieNum++;
                     
                 }
                 br.close();
@@ -277,26 +276,29 @@ public class Movie implements Cloneable{
             System.out.print(i + 1 + ".");
             System.out.println(moviesList.get(i));
         }
-        System.out.println();
         
         TicketingSystem.ClearScreen.wait(3);
     }
 
     public static void deleteMovie() {
           TicketingSystem.ClearScreen.cls();
+          int deleteIndex;
+          
         if(movieNum==0)
         {
             System.out.println("Movie List is empty.");
         }
         else{
-        int deleteIndex;
+        
         Movie.displayMovie();
+        System.out.println((movieNum+1)+".   Exit");
         do{
             deleteIndex=0;
         try{
-        System.out.print("Please enter the number of wanted delete movie(1-"+movieNum +"):");
+            
+        System.out.print("Please enter the number of wanted delete movie(1-"+(movieNum+1) +"):");
          deleteIndex = new Scanner(System.in).nextInt();
-         if(deleteIndex<1 || deleteIndex>movieNum )
+         if(deleteIndex<1 || deleteIndex>movieNum+1 )
         {
             System.out.print("\n\nInvalid choice. ");
               TicketingSystem.ClearScreen.wait(1);
@@ -306,9 +308,14 @@ public class Movie implements Cloneable{
              TicketingSystem.ClearScreen.wait(1);
         }
         
-        }while(deleteIndex==0 ||deleteIndex>movieNum );
+        }while(deleteIndex==0 ||deleteIndex>movieNum+1 );
         deleteIndex--;
         char really;
+        if(deleteIndex == movieNum)
+        {
+            TicketingSystem.ClearScreen.cls();
+            return;
+        }
         do{
             System.out.println("Do you really want to delete(y=yes,n=no)?");
              really = new Scanner(System.in).next().charAt(0);
@@ -322,7 +329,9 @@ public class Movie implements Cloneable{
         if(Character.toUpperCase(really)=='Y')     
         {
             moviesList.remove(deleteIndex);
+            System.out.println("Deleted sucessful!");
             movieNum--;
+            TicketingSystem.ClearScreen.wait(1);
         }
  
         }
@@ -421,6 +430,7 @@ public class Movie implements Cloneable{
                             count++;
                         }
                         }
+                        
                     }
                     
                     
@@ -453,14 +463,17 @@ public class Movie implements Cloneable{
     {
         TicketingSystem.ClearScreen.cls();
         int editchoice;
-        displayMovie();
         int index;
+         
+        displayMovie();
+        System.out.println(movieNum+1+".   Exit");
+       
         do{
         index = 0;
-        System.out.print("\nWhich movie number to be edited(1-"+movieNum+"):");
+        System.out.print("\nWhich movie number to be edited(1-"+(movieNum+1)+"):");
         try {
              index = new Scanner(System.in).nextInt();
-             if(index <1||index>movieNum)
+             if(index <1||index>movieNum+1)
              {
                  System.out.println("Invalid choice.Please reenter");
                  TicketingSystem.ClearScreen.wait(1);
@@ -469,10 +482,16 @@ public class Movie implements Cloneable{
             System.out.println("Only can enter number.Please try again.");
             TicketingSystem.ClearScreen.wait(1);
         }
-        }while(index <1||index>movieNum);
+        }while(index <1||index>movieNum+1);
+
 
         index--;
         
+        if(index == movieNum)
+        {
+            TicketingSystem.ClearScreen.cls();
+            return;
+        }
         do{
             TicketingSystem.ClearScreen.cls();
             System.out.println("\nMovie Details"              +"                                                   Edit List");

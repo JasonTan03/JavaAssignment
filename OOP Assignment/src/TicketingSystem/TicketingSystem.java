@@ -35,6 +35,7 @@ public final class TicketingSystem{
         while(true){
             ClearScreen.cls();
             int choice;
+            //Staff Id and Password can be viewed through staffList.txt
             Logo();
             System.out.println("                               Please Login ");
             boolean login = Staff.login();

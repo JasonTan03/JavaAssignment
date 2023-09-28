@@ -300,52 +300,52 @@ public class Ticket
         
     }
     
-    public static double getActionPrice() 
+    public double getActionPrice() 
     {
         return actionPrice;
     }
 
-    public static void setActionPrice(double actionPrice) 
+    public void setActionPrice(double actionPrice) 
     {
         Ticket.actionPrice = actionPrice;
     }
 
-    public static double getHorrorPrice() 
+    public double getHorrorPrice() 
     {
         return horrorPrice;
     }
 
-    public static void setHorrorPrice(double horrorPrice) 
+    public void setHorrorPrice(double horrorPrice) 
     {
         Ticket.horrorPrice = horrorPrice;
     }
 
-    public static double getRomancePrice() 
+    public double getRomancePrice() 
     {
         return romancePrice;
     }
 
-    public static void setRomancePrice(double romancePrice) 
+    public void setRomancePrice(double romancePrice) 
     {
         Ticket.romancePrice = romancePrice;
     }
 
-    public static double getCrimePrice() 
+    public double getCrimePrice() 
     {
         return crimePrice;
     }
 
-    public static void setCrimePrice(double crimePrice) 
+    public void setCrimePrice(double crimePrice) 
     {
         Ticket.crimePrice = crimePrice;
     }
 
-    public static double getComedyPrice() 
+    public double getComedyPrice() 
     {
         return comedyPrice;
     }
 
-    public static void setComedyPrice(int comedyPrice) 
+    public void setComedyPrice(int comedyPrice) 
     {
         Ticket.comedyPrice = comedyPrice;
     }

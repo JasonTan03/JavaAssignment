@@ -89,7 +89,8 @@ public static void displayMember(){
         System.out.println(members.get(i).toString());
     }
     System.out.println("-----------------------------------------------------------------------------------------------------------");
-    wait(2);
+    wait(10);
+    ClearScreen.cls();
 }
 
 public static void addMember(){
@@ -180,7 +181,7 @@ public static void addMember(){
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------");
             
-            System.out.print("                                       Select member to modify :");
+            System.out.print("                                       Select memberID to modify :");
             String MMemberId = modM.next();
             for(int i = 0; i < members.size();i++){
                 if(MMemberId.equals(members.get(i).getMemberID())){
@@ -190,6 +191,7 @@ public static void addMember(){
             }
             if(match == -1){
                 System.out.println("                                        Invalid MemberID");
+                ClearScreen.cls();
             }
             else
             {
@@ -447,7 +449,7 @@ public static void addMember(){
             System.out.println("-----------------------------------------------------------------------------------------------------------");
             System.out.println(" Member ID\t MemberName\t Gender\t       MemberRank\t Status\t      Join Date");
             System.out.println("-----------------------------------------------------------------------------------------------------------");
-            for (int j=0;j<members.size();j++){
+            for( i=0;i<members.size();i++){
             System.out.println(members.get(i).toString());
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------");
@@ -467,7 +469,7 @@ public static void addMember(){
            validation(MSearch);
        }while(MSearch == -1);
        displayS(MSearch);
-       System.out.print("Are You Sure? : ");
+       System.out.print("Are You Sure?(Y/N) : ");
        do{
            char confirm = delM.next().charAt(0);
            if(confirm == 'N' || confirm == 'n'){

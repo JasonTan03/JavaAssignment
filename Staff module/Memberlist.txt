@@ -1,1 +1,3 @@
 MB1000,Bobby,M,Silver,10%,22/10/2022
+MB1001,Lily Tan,F,Gold,15%,10/11/2022
+MB1002,Timmy Lee,M,Normal,5%,12/11/2022

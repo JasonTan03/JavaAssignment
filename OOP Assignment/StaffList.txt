@@ -3,3 +3,5 @@ ST1001,Lucas Chong,M,20/8/2022,Asst. Manager,3500.0,12:00 pm - 10:00pm,qwe123,fa
 ST1002,Terence Wong,M,2/10/2021,Cashier,2000.0,08:00 pm - 10:00pm,rty123,false
 ST1003,Yap Sun Wen,M,17/13/2022,Cashier,2000.0,10:00 am - 08:00pm,iop890,false
 ST1004M,Jasmine Tea,F,20/9/2023,Manager,4500.0,10:00 pm - 10:00pm,zxc456,true
+ST1005,Caslu,M,12/12/2023,Cashier,2000.0,10:00 am - 08:00pm,aa12,false
+ST1006,En,F,29/12/2024,Cashier,2000.0,10:00 am - 08:00pm,ab12,false

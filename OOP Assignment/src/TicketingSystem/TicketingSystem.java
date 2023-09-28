@@ -5,17 +5,17 @@
 package TicketingSystem;
 
 import BookingModule.Ticket;
+import StaffModule.Staff;
 import MemberModule.Member;
 import MemberModule.mRanks;
 import MovieModule.Movie;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import staff.module.JobTitle;
-import staff.module.Staff;
+import StaffModule.JobTitle;
+import StaffModule.Staff;
 
 /**
  *
@@ -30,9 +30,10 @@ public final class TicketingSystem{
     public static ArrayList<Movie> moviesList = new ArrayList<>();
     
     public static void main(String[] args) throws FileNotFoundException, CloneNotSupportedException{
-        readMemberModuleFile();
-        readStaffModuleFile();
+        Member.readMemberModuleFile();
+        Staff.readStaffModuleFile();
         Movie.readMovieList();
+        
         while(true){
             ClearScreen.cls();
             int choice;
@@ -60,7 +61,7 @@ public final class TicketingSystem{
                 switch(choice)
                 {
 
-                    case 1:ClearScreen.cls();StaffModule();writeStaffModuleFile();break;
+                    case 1:ClearScreen.cls();StaffModule();Staff.writeStaffModuleFile();break;
 
                     case 2:MemberModule();break;
 
@@ -77,65 +78,6 @@ public final class TicketingSystem{
                 }while(choice !=5);
 
             }
-        }
-    }
-    public static void readMemberModuleFile() throws FileNotFoundException{
-        String filepath1 = "Ranks.txt";
-        String filepath2 = "Memberlist.txt";
-      
-        File file1 = new File(filepath1);
-        Scanner sc1 = new Scanner(file1);
-        String line = "";
-        while(sc1.hasNextLine()){
-            line = sc1.nextLine();
-            String [] temp = line.split(",");
-            memranks.add(new mRanks(temp[0],temp[1]));
-            
-        }
-
-        File file2 = new File(filepath2);
-        Scanner sc2 = new Scanner(file2);
-        while(sc2.hasNextLine()){
-            line = sc2.nextLine();
-            String [] temp2 = new String[6];
-            temp2 = line.split(",");
-
-            members.add(new Member(temp2[0],temp2[1],temp2[2].charAt(0),new mRanks(temp2[3],temp2[4]),temp2[5]));
-
-        }
-    }
-    public static void readStaffModuleFile()throws FileNotFoundException{
-        File file1 = new File("Job.txt");
-        Scanner scanFile1 = new Scanner(file1);
-        String line = "";
-        while(scanFile1.hasNextLine()){
-            line = scanFile1.nextLine();
-            String[] temp = line.split(",");
-            jobList.add(new JobTitle(temp[0],Double.parseDouble(temp[1]), temp[2]));
-        }
-        
-        File file2 = new File("StaffList.txt");
-        Scanner scanFile2 = new Scanner(file2);
-        while(scanFile2.hasNextLine()){
-            line = scanFile2.nextLine();
-            String[] temp2 = new String[9];
-            temp2 = line.split(",");
-            staffList.add(new Staff(temp2[1], temp2[2].charAt(0),temp2[3],new JobTitle(temp2[4],Double.parseDouble(temp2[5]),temp2[6]),temp2[7],Boolean.parseBoolean(temp2[8])));
-        }
-    }
-    public static void writeStaffModuleFile(){
-        try {
-            PrintWriter pw = new PrintWriter("StaffList.txt");
-            
-            for(int i=0;i<staffList.size();i++)
-            {
-                pw.println(staffList.get(i).getStaffID() + "," + staffList.get(i).getName() + "," + staffList.get(i).getGender() + "," + staffList.get(i).getJD()
-                 + "," + staffList.get(i).getJobTitle().getPosition() + "," + staffList.get(i).getJobTitle().getSalary() + "," + staffList.get(i).getJobTitle().getShift()
-                 + "," + staffList.get(i).getPassword() + "," + staffList.get(i).getIsManager()) ;
-            }
-            pw.close();
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         }
     }
     public static void StaffModule(){

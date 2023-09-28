@@ -7,12 +7,13 @@
 
 package MemberModule;
 import TicketingSystem.ClearScreen;
-import java.util.Scanner;
 import static TicketingSystem.TicketingSystem.members;
-import static TicketingSystem.TicketingSystem.memranks; 
+import java.util.Scanner; 
+import static TicketingSystem.TicketingSystem.memranks;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import staff.module.Person;
+import StaffModule.Person;
 
 
 /**
@@ -69,7 +70,7 @@ public class Member extends Person {
     //to string
     @Override
     public String toString() {
-        return String.format(" %-15s %-17s %-12c %-18s  %-5s",memberID,getName(),getGender(),mranks,getJD());
+        return String.format(" %-15s %-17s %-12c %-21s  %-5s",memberID,getName(),getGender(),mranks,getJD());
     }
     
 public static void wait(int sec){
@@ -111,7 +112,7 @@ public static void addMember(){
         char gender = 0;
         
         while(true){
-            System.out.print("\nEnter gender : ");
+            System.out.print("\nEnter gender(M=Male,F=Female) : ");
             String Mgender = addM.next().toUpperCase();
             if(Mgender.equals("F") || Mgender.equals("M")){
                 gender = Mgender.charAt(0);
@@ -320,13 +321,15 @@ public static void addMember(){
                        }catch(Exception e){}
                        validation(MSearch);
                    }while(MSearch == -1);
+                   System.out.println("Enter any key to continue");
+                   new Scanner(System.in).nextLine();
                    break;
                    
                case 2:
                    do{
                        MSearch = -1;
                        System.out.print("Enter Member Name (X to exit) : ");
-                       String sMemName = srcM.nextLine();
+                       String sMemName = new Scanner(System.in).nextLine();
                        if(sMemName.equals("X") || sMemName.equals("x"))
                            break;
                        
@@ -337,12 +340,15 @@ public static void addMember(){
                            }
                        }validation(MSearch);  
                    }while(MSearch == -1);
+                   System.out.println("Enter any key to continue");
+                   new Scanner(System.in).nextLine();
+                   
                    break;
                    
                case 3:
                    do{
                        MSearch = -1;
-                       System.out.print("Enter Member Gender (X to exit) : ");
+                       System.out.print("Enter Member Gender (M=Male,F=Female,X to exit) : ");
                        char sMemGen = srcM.next().charAt(0);
                        if(Character.toUpperCase(sMemGen) == 'X')
                            break;
@@ -354,6 +360,8 @@ public static void addMember(){
                            }
                        }validation(MSearch);  
                     }while(MSearch == -1);
+                    System.out.println("Enter any key to continue");
+                   new Scanner(System.in).nextLine();
                     break;
                     
                case 4:
@@ -377,22 +385,23 @@ public static void addMember(){
                                    
                                    displayS(i);
                                    MSearch = 1;
-                                   ClearScreen.wait(7);
-                                   
-                                   break;
                                 }
+                             
                             }
+                              ClearScreen.wait(7);
+                                break;
                            case 2:
                            for(int i=0;i<members.size();i++){
                                 if(members.get(i).getMranks().getRanks().equals("Silver")){
                                    
                                    displayS(i);
                                    MSearch = 1;
-                                   ClearScreen.wait(7);
-
-                                   break;
+                            
                                 }
+                             
                             }
+                                ClearScreen.wait(7);
+                                 break;
                            
                            case 3:
                                for(int i=0;i<members.size();i++){
@@ -400,11 +409,12 @@ public static void addMember(){
                                    
                                    displayS(i);
                                    MSearch = 1;
-                                   ClearScreen.wait(7);
-                                   
-                                   break;
+                              
                                 }
+                             
                             }
+                                   ClearScreen.wait(7);  
+                                   break;
                                
                            case 4:
                                return;
@@ -422,7 +432,7 @@ public static void addMember(){
                case 5:
                    do{
                       MSearch = -1;
-                      System.out.print("Enter Member Join Date(X to exit) : ");
+                      System.out.print("Enter Member Join Date(DD/MM/YYYY)(X to exit) : ");
                       String sMemJD = srcM.next();
                        if(sMemJD.equals("X") || sMemJD.equals("x"))
                             break;
@@ -435,6 +445,8 @@ public static void addMember(){
                            
                         }validation(MSearch);  
                     }while(MSearch == -1);
+                   System.out.println("Enter any key to continue");
+                   new Scanner(System.in).nextLine();
                      break;
                      
                case 6:
@@ -512,18 +524,43 @@ public static void addMember(){
        System.out.println("-------------------------------------------");
    }    
 
-public static void writeMember() throws FileNotFoundException{
-    try{
-        PrintWriter pw = new PrintWriter("Memberlist.txt");
-        
-        for(int i=0;i<members.size();i++){
-            pw.println(members.get(i).getMemberID()+","+members.get(i).getName()+","+members.get(i).getGender()
-                    +","+ members.get(i).getMranks().getRanks()+"," + members.get(i).getMranks().getStatus()+","+members.get(i).getJD());
+    public static void readMemberModuleFile() throws FileNotFoundException{
+        String filepath1 = "Ranks.txt";
+        String filepath2 = "Memberlist.txt";
+      
+        File file1 = new File(filepath1);
+        Scanner sc1 = new Scanner(file1);
+        String line = "";
+        while(sc1.hasNextLine()){
+            line = sc1.nextLine();
+            String [] temp = line.split(",");
+            memranks.add(new mRanks(temp[0],temp[1]));
+            
         }
-        pw.close();
-        
-    }catch(FileNotFoundException ex){
-        ex.printStackTrace();
+
+        File file2 = new File(filepath2);
+        Scanner sc2 = new Scanner(file2);
+        while(sc2.hasNextLine()){
+            line = sc2.nextLine();
+            String [] temp2 = new String[6];
+            temp2 = line.split(",");
+
+            members.add(new Member(temp2[0],temp2[1],temp2[2].charAt(0),new mRanks(temp2[3],temp2[4]),temp2[5]));
+
+        }
     }
-}
+    public static void writeMember() throws FileNotFoundException{
+        try{
+            PrintWriter pw = new PrintWriter("Memberlist.txt");
+
+            for(int i=0;i<members.size();i++){
+                pw.println(members.get(i).getMemberID()+","+members.get(i).getName()+","+members.get(i).getGender()
+                        +","+ members.get(i).getMranks().getRanks()+"," + members.get(i).getMranks().getStatus()+","+members.get(i).getJD());
+            }
+            pw.close();
+
+        }catch(FileNotFoundException ex){
+            ex.printStackTrace();
+        }
+    }
 }

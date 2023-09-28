@@ -4,14 +4,12 @@
  */
 package MovieModule;
 
-import BookingModule.Ticket;
 import static TicketingSystem.TicketingSystem.moviesList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 

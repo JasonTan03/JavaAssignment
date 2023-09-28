@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package staff.module;
+package StaffModule;
 
 import TicketingSystem.ClearScreen;
-import java.util.Scanner;
 import static TicketingSystem.TicketingSystem.jobList;
 import static TicketingSystem.TicketingSystem.staffList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -767,5 +770,40 @@ public class Staff extends Person{
         System.out.println("Staff Salary    : " + staffList.get(matchSearch).getJobTitle().getSalary());
         System.out.println("Staff Shift     : " + staffList.get(matchSearch).getJobTitle().getShift());
         System.out.println("===========================================");
+    }
+    
+      public static void readStaffModuleFile()throws FileNotFoundException{
+        File file1 = new File("Job.txt");
+        Scanner scanFile1 = new Scanner(file1);
+        String line = "";
+        while(scanFile1.hasNextLine()){
+            line = scanFile1.nextLine();
+            String[] temp = line.split(",");
+            jobList.add(new JobTitle(temp[0],Double.parseDouble(temp[1]), temp[2]));
+        }
+        
+        File file2 = new File("StaffList.txt");
+        Scanner scanFile2 = new Scanner(file2);
+        while(scanFile2.hasNextLine()){
+            line = scanFile2.nextLine();
+            String[] temp2 = new String[9];
+            temp2 = line.split(",");
+            staffList.add(new Staff(temp2[1], temp2[2].charAt(0),temp2[3],new JobTitle(temp2[4],Double.parseDouble(temp2[5]),temp2[6]),temp2[7],Boolean.parseBoolean(temp2[8])));
+        }
+    }
+    public static void writeStaffModuleFile(){
+        try {
+            PrintWriter pw = new PrintWriter("StaffList.txt");
+            
+            for(int i=0;i<staffList.size();i++)
+            {
+                pw.println(staffList.get(i).getStaffID() + "," + staffList.get(i).getName() + "," + staffList.get(i).getGender() + "," + staffList.get(i).getJD()
+                 + "," + staffList.get(i).getJobTitle().getPosition() + "," + staffList.get(i).getJobTitle().getSalary() + "," + staffList.get(i).getJobTitle().getShift()
+                 + "," + staffList.get(i).getPassword() + "," + staffList.get(i).getIsManager()) ;
+            }
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -99,7 +99,7 @@ public class Ticket
                    totalPriceAfterDiscount = checkMember(numberOfSeat, mvSelected);
                   
                    clearScreen();
-                   System.out.println("Ticket(s) Price is(are): "+ "RM " +totalPriceAfterDiscount);
+                   System.out.println("Ticket Price is: "+ "RM " +totalPriceAfterDiscount);
                    paymentType = customerPayType(); 
                    if(paymentType.equals("CREDIT CARD"))
                    {

@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 import static TicketingSystem.TicketingSystem.members;
 import static TicketingSystem.TicketingSystem.memranks; 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import staff.module.Person;
 
 
@@ -68,7 +70,7 @@ public class Member extends Person {
     //to string
     @Override
     public String toString() {
-        return String.format(" %-15s %-17s %-12c %-15s  %s",memberID,getName(),getGender(),mranks,getJD());
+        return String.format(" %-15s %-17s %-12c %-18s  %-5s",memberID,getName(),getGender(),mranks,getJD());
     }
     
 public static void wait(int sec){
@@ -80,7 +82,7 @@ public static void wait(int sec){
 }
 
 public static void displayMember(){
-    ClearScreen.cls();
+    
     System.out.println("\n\n                                       List of Member");
     System.out.println("-----------------------------------------------------------------------------------------------------------");
     System.out.println(" Member ID\t MemberName\t Gender\t       MemberRank\t Status\t      Join Date");
@@ -503,5 +505,18 @@ public static void addMember(){
        System.out.println("-------------------------------------------");
    }    
 
-
+public static void writeMember() throws FileNotFoundException{
+    try{
+        PrintWriter pw = new PrintWriter("Memberlist.txt");
+        
+        for(int i=0;i<members.size();i++){
+            pw.println(members.get(i).getMemberID()+","+members.get(i).getName()+","+members.get(i).getGender()
+                    +","+ memranks.get(i).getRanks()+"," + memranks.get(i).getStatus()+","+members.get(i).getJD());
+        }
+        pw.close();
+        
+    }catch(FileNotFoundException ex){
+        ex.printStackTrace();
+    }
+}
 }

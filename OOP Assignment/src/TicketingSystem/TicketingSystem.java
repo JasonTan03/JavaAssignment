@@ -89,6 +89,7 @@ public final class TicketingSystem{
             line = sc1.nextLine();
             String [] temp = line.split(",");
             memranks.add(new mRanks(temp[0],temp[1]));
+            
         }
 
         File file2 = new File(filepath2);
@@ -181,7 +182,7 @@ public final class TicketingSystem{
             }
         }
     }
-    public static void MemberModule(){
+    public static void MemberModule() throws FileNotFoundException{
    
     Scanner sel = new Scanner(System.in);
     while(true){
@@ -232,7 +233,7 @@ public final class TicketingSystem{
             
         }
          
-
+         Member.writeMember();
     }
     
   } 

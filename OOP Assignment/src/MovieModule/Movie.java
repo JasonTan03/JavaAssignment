@@ -246,7 +246,6 @@ public class Movie implements Cloneable{
             date1.setDay(day);
             date1.setMonth(month);
             date1.setYear(year);
-
         } while (date1.checkDate() == false);
         
         int runTime=0;

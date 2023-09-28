@@ -192,6 +192,7 @@ public static void addMember(){
             }
             if(match == -1){
                 System.out.println("                                        Invalid MemberID");
+                ClearScreen.wait(1);
                 ClearScreen.cls();
             }
             else
@@ -325,7 +326,7 @@ public static void addMember(){
                    do{
                        MSearch = -1;
                        System.out.print("Enter Member Name (X to exit) : ");
-                       String sMemName = srcM.next();
+                       String sMemName = srcM.nextLine();
                        if(sMemName.equals("X") || sMemName.equals("x"))
                            break;
                        

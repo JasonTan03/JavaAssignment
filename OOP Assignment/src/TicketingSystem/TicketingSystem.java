@@ -23,10 +23,10 @@ import staff.module.Staff;
      */
 public final class TicketingSystem{
     public static ArrayList<Ticket> TicketSales = new ArrayList<>();
-    public static ArrayList<JobTitle> jobList = new ArrayList<JobTitle>();
-    public static ArrayList<Staff> staffList  = new ArrayList<Staff>();
-    public static ArrayList<Member> members = new ArrayList<Member>();
-    public static ArrayList<mRanks> memranks = new ArrayList<mRanks>();
+    public static ArrayList<JobTitle> jobList = new ArrayList<>();
+    public static ArrayList<Staff> staffList  = new ArrayList<>();
+    public static ArrayList<Member> members = new ArrayList<>();
+    public static ArrayList<mRanks> memranks = new ArrayList<>();
     public static ArrayList<Movie> moviesList = new ArrayList<>();
     
     public static void main(String[] args) throws FileNotFoundException, CloneNotSupportedException{

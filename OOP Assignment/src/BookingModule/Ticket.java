@@ -29,7 +29,7 @@ public class Ticket
     private String date;
     private String customerPaymentType;
     private int numOfSeat;
-    private String memberRank;
+    
     private static double actionPrice = 15.00;
     private static double horrorPrice = 15.00;
     private static double romancePrice = 18.00;

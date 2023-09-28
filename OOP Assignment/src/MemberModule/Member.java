@@ -8,7 +8,6 @@
 package MemberModule;
 import TicketingSystem.ClearScreen;
 import java.util.Scanner;
-
 import static TicketingSystem.TicketingSystem.members;
 import static TicketingSystem.TicketingSystem.memranks; 
 import java.io.FileNotFoundException;
@@ -82,7 +81,7 @@ public static void wait(int sec){
 }
 
 public static void displayMember(){
-    
+    ClearScreen.cls();
     System.out.println("\n\n                                       List of Member");
     System.out.println("-----------------------------------------------------------------------------------------------------------");
     System.out.println(" Member ID\t MemberName\t Gender\t       MemberRank\t Status\t      Join Date");
@@ -288,6 +287,7 @@ public static void addMember(){
        int ch,MSearch;
        
        do{
+           ClearScreen.cls();
            System.out.println("\n<Search Member Details>  \n");
            System.out.println("-----------------------------");
            System.out.println("   1.Member ID       ");
@@ -365,7 +365,7 @@ public static void addMember(){
                                   
                     do{
                        MSearch = -1;
-                       System.out.print("Select Search Member Ranks");
+                       System.out.print("Select Search Member Ranks:");
                        String sMemRanks = srcM.next();
                        int srcranks = Integer.parseInt(sMemRanks);
                        
@@ -376,6 +376,8 @@ public static void addMember(){
                                    
                                    displayS(i);
                                    MSearch = 1;
+                                   ClearScreen.wait(7);
+                                   
                                    break;
                                 }
                             }
@@ -385,6 +387,8 @@ public static void addMember(){
                                    
                                    displayS(i);
                                    MSearch = 1;
+                                   ClearScreen.wait(7);
+
                                    break;
                                 }
                             }
@@ -395,6 +399,8 @@ public static void addMember(){
                                    
                                    displayS(i);
                                    MSearch = 1;
+                                   ClearScreen.wait(7);
+                                   
                                    break;
                                 }
                             }
@@ -511,7 +517,7 @@ public static void writeMember() throws FileNotFoundException{
         
         for(int i=0;i<members.size();i++){
             pw.println(members.get(i).getMemberID()+","+members.get(i).getName()+","+members.get(i).getGender()
-                    +","+ memranks.get(i).getRanks()+"," + memranks.get(i).getStatus()+","+members.get(i).getJD());
+                    +","+ members.get(i).getMranks().getRanks()+"," + members.get(i).getMranks().getStatus()+","+members.get(i).getJD());
         }
         pw.close();
         

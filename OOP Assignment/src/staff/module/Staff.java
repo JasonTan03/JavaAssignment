@@ -534,7 +534,7 @@ public class Staff extends Person{
                     do{
                         matchSearch = -1;
                         System.out.print("Enter Staff Name (Enter X to exit) : ");
-                        String findName = input.next();
+                        String findName = input.nextLine();
                         if(findName.toUpperCase().equals("X")){
                             break;
                         }             
@@ -592,7 +592,7 @@ public class Staff extends Person{
                     do{
                         matchSearch = -1;
                         System.out.print("Enter Staff Position (Enter X to exit) : ");
-                        String FindStaffPosition = input.next();
+                        String FindStaffPosition = input.nextLine();
                         if(FindStaffPosition.toUpperCase().equals("X")){
                             break;
                         }             

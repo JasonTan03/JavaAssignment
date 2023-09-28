@@ -10,6 +10,7 @@ import MemberModule.mRanks;
 import MovieModule.Movie;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -59,7 +60,7 @@ public final class TicketingSystem{
                 switch(choice)
                 {
 
-                    case 1:ClearScreen.cls();StaffModule();break;
+                    case 1:ClearScreen.cls();StaffModule();writeStaffModuleFile();break;
 
                     case 2:MemberModule();break;
 
@@ -117,9 +118,24 @@ public final class TicketingSystem{
         Scanner scanFile2 = new Scanner(file2);
         while(scanFile2.hasNextLine()){
             line = scanFile2.nextLine();
-            String[] temp2 = new String[6];
+            String[] temp2 = new String[9];
             temp2 = line.split(",");
-            staffList.add(new Staff(temp2[0], temp2[1].charAt(0),temp2[2],jobList.get(Integer.parseInt(temp2[3])),temp2[4],Boolean.parseBoolean(temp2[5])));
+            staffList.add(new Staff(temp2[1], temp2[2].charAt(0),temp2[3],new JobTitle(temp2[4],Double.parseDouble(temp2[5]),temp2[6]),temp2[7],Boolean.parseBoolean(temp2[8])));
+        }
+    }
+    public static void writeStaffModuleFile(){
+        try {
+            PrintWriter pw = new PrintWriter("StaffList.txt");
+            
+            for(int i=0;i<staffList.size();i++)
+            {
+                pw.println(staffList.get(i).getStaffID() + "," + staffList.get(i).getName() + "," + staffList.get(i).getGender() + "," + staffList.get(i).getJD()
+                 + "," + staffList.get(i).getJobTitle().getPosition() + "," + staffList.get(i).getJobTitle().getSalary() + "," + staffList.get(i).getJobTitle().getShift()
+                 + "," + staffList.get(i).getPassword() + "," + staffList.get(i).getIsManager()) ;
+            }
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
         }
     }
     public static void StaffModule(){

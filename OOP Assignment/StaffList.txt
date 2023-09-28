@@ -1,5 +1,5 @@
-Jason Tan,M,9/7/2020,3,asd123,true
-Lucas Chong,M,20/8/2022,2,qwe123,false
-Terence Wong,M,2/10/2021,1,rty123,false
-Yap Sun Wen,M,17/13/2022,0,iop890,false
-Jasmine Tea,F,20/9/2023,3,zxc456,true
+ST1000M,Jason Tan,M,9/7/2020,Manager,4500.0,10:00 pm - 10:00pm,asd123,true
+ST1001,Lucas Chong,M,20/8/2022,Asst. Manager,3500.0,12:00 pm - 10:00pm,qwe123,false
+ST1002,Terence Wong,M,2/10/2021,Cashier,2000.0,08:00 pm - 10:00pm,rty123,false
+ST1003,Yap Sun Wen,M,17/13/2022,Cashier,2000.0,10:00 am - 08:00pm,iop890,false
+ST1004M,Jasmine Tea,F,20/9/2023,Manager,4500.0,10:00 pm - 10:00pm,zxc456,true

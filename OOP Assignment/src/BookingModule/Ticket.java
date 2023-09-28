@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
@@ -79,6 +79,11 @@ public class Ticket
         System.out.print("Enter The Number Of Seat(Min=1,Max=140): ");
         numberOfSeat = new Scanner(System.in).nextInt();
             }catch(Exception e)
+            {
+                System.out.println("Wrong Input, Try Again !!!");
+            }
+            
+            if(numberOfSeat<1 || numberOfSeat>140)
             {
                 System.out.println("Wrong Input, Try Again !!!");
             }

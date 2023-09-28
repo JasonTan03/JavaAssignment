@@ -45,11 +45,21 @@ public class HallSeat
     }
     public int enterColumn()
     {
-           int mvColumn;
+           int mvColumn = 0;
         do 
-        {            
+        {
+            
+            do{
+        try{
         System.out.print("Enter Column For Seat(1 - 14): ");
          mvColumn = new Scanner(System.in).nextInt();
+        }catch(Exception e)
+        {
+            System.out.println("Wrong Input, Try Again !!!");
+        }
+            }while(mvColumn==0);
+            
+            
         if(checkColumnSeat(mvColumn)==false)
         {
             System.out.println("Wrong Input, Try Again !!!");

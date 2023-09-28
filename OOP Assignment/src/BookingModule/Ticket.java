@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package BookingModule;
-import MemberModule.mRanks;
 import static TicketingSystem.TicketingSystem.members;
 import static TicketingSystem.TicketingSystem.TicketSales;
 import MovieModule.Movie;
@@ -57,15 +56,34 @@ public class Ticket
         double totalPriceAfterDiscount;
         String paymentType;
         
+        int mvSelection=0;
+        int numberOfSeat=0;
+        
         Seat.clear();
         Movie.displayMovie();
-        System.out.print("Select Movie: ");
-        int mvSelection = bkt.nextInt();
+        
+        do
+        try{
+         System.out.print("Select Movie: ");
+         mvSelection= new Scanner(System.in).nextInt();
+        }catch(Exception e)
+        {
+            System.out.println("Wrong Input, Try Again !!!");
+        }while(mvSelection==0);
+        
         mvSelection--;
         mvSelected = (Movie)moviesList.get(mvSelection).clone();
         
-        System.out.print("Enter The Number Of Seat: ");
-        int numberOfSeat = bkt.nextInt();
+        do{
+            try{
+        System.out.print("Enter The Number Of Seat(Min=1,Max=140): ");
+        numberOfSeat = new Scanner(System.in).nextInt();
+            }catch(Exception e)
+            {
+                System.out.println("Wrong Input, Try Again !!!");
+            }
+        }while(numberOfSeat<1 || numberOfSeat>140);
+        
         clearScreen();
            
            for(int i = 0; i < numberOfSeat; i++)
@@ -99,7 +117,8 @@ public class Ticket
                    totalPriceAfterDiscount = checkMember(numberOfSeat, mvSelected);
                   
                    clearScreen();
-                   System.out.println("Ticket Price is: "+ "RM " +totalPriceAfterDiscount);
+                   System.out.print("Ticket Price is: "+ "RM ");
+                    System.out.printf("%.2f\n",totalPriceAfterDiscount);
                    paymentType = customerPayType(); 
                    if(paymentType.equals("CREDIT CARD"))
                    {

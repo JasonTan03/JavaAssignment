@@ -9,13 +9,12 @@ import StaffModule.Staff;
 import MemberModule.Member;
 import MemberModule.mRanks;
 import MovieModule.Movie;
+import StaffModule.JobTitle;
+
 import java.io.FileNotFoundException;
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
-import StaffModule.JobTitle;
-import StaffModule.Staff;
+
 
 /**
  *

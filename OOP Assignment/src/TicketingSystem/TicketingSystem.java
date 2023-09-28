@@ -281,6 +281,8 @@ public final class TicketingSystem{
                 Movie.deleteMovie();
                 break;
             case 6:
+                System.out.println("\n\n\nThank you for using.Hope to see you again!");
+                ClearScreen.wait(2);
                 break;
             default:System.out.println("Invalid choice. Enter 1-6 only.");
         }

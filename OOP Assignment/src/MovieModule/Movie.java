@@ -24,17 +24,17 @@ public class Movie implements Cloneable{
 
     private String movieName;
     private String genre;
-    private Date premierDate;
+    private Date premiereDate;
     private int runTime;
     private static int movieNum = 0;
     private static final String[] genreList = {"Action", "Horror", "Romance", "Crime", "Comedy"};
 
     public Movie(){}
-    public Movie(String movieName, String genre, Date premierDate,int runTime) {
+    public Movie(String movieName, String genre, Date premiereDate,int runTime) {
         this.movieName = movieName;
         this.genre = genre;
         this.runTime = runTime;
-        this.premierDate = premierDate;
+        this.premiereDate = premiereDate;
         movieNum++;
     }
 
@@ -62,12 +62,12 @@ public class Movie implements Cloneable{
         this.runTime = runTime;
     }
 
-    public Date getPremierDate() {
-        return premierDate;
+    public Date getPremiereDate() {
+        return premiereDate;
     }
 
-    public void setPremierDate(Date premierDate) {
-        this.premierDate = premierDate;
+    public void setPremiereDate(Date premiereDate) {
+        this.premiereDate = premiereDate;
     }
 
     public static int getMovieNum() {
@@ -86,7 +86,7 @@ public class Movie implements Cloneable{
     
     @Override
     public String toString() {
-        return String.format("   %-32s %-11s %-18s %-4d", movieName, genre, premierDate, runTime);
+        return String.format("   %-32s %-11s %-18s %-4d", movieName, genre, premiereDate, runTime);
     }
 
     //function
@@ -181,12 +181,17 @@ public class Movie implements Cloneable{
         Date date1 = new Date();
         TicketingSystem.ClearScreen.cls();
         do{
-        System.out.print("Enter movie name: ");
+        System.out.print("Enter movie name(X to exit): ");
          movieName = new Scanner(System.in).nextLine();
          if(movieName=="")
          {
              System.out.println("Movie name cannot be empty.Please reenter");
              TicketingSystem.ClearScreen.wait(1);
+         }
+         if(movieName.toLowerCase().charAt(0)=='x' && movieName.length()==1)
+         {
+             TicketingSystem.ClearScreen.cls();
+             return;
          }
         }while(movieName=="");
 
@@ -200,7 +205,7 @@ public class Movie implements Cloneable{
             day=0;
             month=0;
             year=0;
-            System.out.println("Enter premier date");
+            System.out.println("\nEnter premiere date");
             
             do{
             try{
@@ -247,7 +252,7 @@ public class Movie implements Cloneable{
         int runTime=0;
         do{
         try{
-            System.out.println("Enter run time(minutes)");
+            System.out.print("\nEnter run time(minutes)\n:");
             runTime = new Scanner(System.in).nextInt();
             if(runTime<1)
         {
@@ -263,19 +268,24 @@ public class Movie implements Cloneable{
         }while(runTime<1);
 
         moviesList.add(new Movie(movieName, genre,  date1,runTime));
-        movieNum++;
+        System.out.println("Movie added sucessfully!");
         movieByDate();
+        TicketingSystem.ClearScreen.wait(2);
+        TicketingSystem.ClearScreen.cls();
     }
 
     public static void displayMovie() {
           TicketingSystem.ClearScreen.cls();
         movieByDate();
         System.out.println();
-        System.out.printf("   %-34s %-10s %-15s %-8s \n", "Movie name", "Genre", "PremiereDate", "Run time");
+        System.out.println("=============================================================================");
+        System.out.printf("     %-32s %-11s %-18s %-4s \n", "Movie name", "Genre", "PremiereDate", "Run time");
+        System.out.println("=============================================================================");
         for (int i = 0; i < moviesList.size(); i++) {
             System.out.print(i + 1 + ".");
             System.out.println(moviesList.get(i));
         }
+         System.out.println("=============================================================================");
         
         TicketingSystem.ClearScreen.wait(3);
     }
@@ -291,7 +301,8 @@ public class Movie implements Cloneable{
         else{
         
         Movie.displayMovie();
-        System.out.println((movieNum+1)+".   Exit");
+        System.out.printf("%-5s",((movieNum+1)+"."));
+        System.out.println("Exit");
         do{
             deleteIndex=0;
         try{
@@ -317,7 +328,7 @@ public class Movie implements Cloneable{
             return;
         }
         do{
-            System.out.println("Do you really want to delete(y=yes,n=no)?");
+            System.out.print("Do you really want to delete(y=yes,n=no)?");
              really = new Scanner(System.in).next().charAt(0);
              if(really!='y'&&really!='Y'&& really!='n'&&really!='N')
              {
@@ -331,7 +342,7 @@ public class Movie implements Cloneable{
             moviesList.remove(deleteIndex);
             System.out.println("Deleted sucessful!");
             movieNum--;
-            TicketingSystem.ClearScreen.wait(1);
+            TicketingSystem.ClearScreen.cls();
         }
  
         }
@@ -363,7 +374,7 @@ public class Movie implements Cloneable{
             if (choice == 1) {
 
                 String sMovieName;
-
+                TicketingSystem.ClearScreen.cls();
                 do {
                     int count = 1;
                     
@@ -382,23 +393,26 @@ public class Movie implements Cloneable{
                             break;
                         }
                         //sMovieName.regionMatches(true,0,moviesList.get(i).getMovieName(),0,sMovieName.length())
-                        if (moviesList.get(i).getMovieName().toLowerCase().contains(sMovieName)) {
+                        if (moviesList.get(i).getMovieName().toLowerCase().contains(sMovieName.toLowerCase())) {
                             if(count==1)
                             {
                             System.out.println();
+                             System.out.println("=============================================================================");
                             System.out.printf("   %-35s %-10s %-15s %-8s \n", "  Movie name", "Genre", "PremiereDate", "Run time");
+                             System.out.println("=============================================================================");
                             }
                             System.out.println(count + "." + moviesList.get(i).toString());
                             count++;
                         }
                          
                     }
+                     System.out.println("=============================================================================");
                     System.out.println();
-                    if ((sMovieName.charAt(0) != 'x' || sMovieName.length() != 1) && count == 1) {
+                    if ((sMovieName.toLowerCase().charAt(0) != 'x' || sMovieName.length() != 1) && count == 1) {
                         System.out.println("\nMovie name entered not found,Please reenter.");
                          TicketingSystem.ClearScreen.wait(1);
                     }
-                } while (sMovieName.charAt(0) != 'x' || sMovieName.length() != 1);
+                } while (sMovieName.toLowerCase().charAt(0) != 'x' || sMovieName.length() != 1);
 
             } else if (choice == 2) {
                 String sMovieGenre;
@@ -422,15 +436,17 @@ public class Movie implements Cloneable{
                     else
                     {
                         count=1;
+                         System.out.println("=============================================================================");
                         System.out.printf("   %-35s %-10s %-15s %-8s \n", "  Movie name", "Genre", "PremiereDate", "Run time");
-                        System.out.println(     "=================================================================================================");
+                         System.out.println("=============================================================================");
                         for (int i = 0; i < moviesList.size(); i++) {
                         if (sMovieGenre.equalsIgnoreCase(moviesList.get(i).getGenre())) {
                             System.out.println(count + "." + moviesList.get(i).toString());
                             count++;
                         }
+                         
                         }
-                        
+                        System.out.println("=============================================================================");
                     }
                     
                     
@@ -466,7 +482,8 @@ public class Movie implements Cloneable{
         int index;
          
         displayMovie();
-        System.out.println(movieNum+1+".   Exit");
+        System.out.printf("%-5s",(movieNum+1+"."));
+        System.out.println("Exit");
        
         do{
         index = 0;
@@ -501,8 +518,8 @@ public class Movie implements Cloneable{
             System.out.println("1.Movie name");
             System.out.printf("%-64s","Movie Genre:"+moviesList.get(index).getGenre());
             System.out.println("2.Movie Genre");
-            System.out.printf("%-64s","Movie Premier Date:"+moviesList.get(index).getPremierDate());
-            System.out.println("3.Movie premier date");
+            System.out.printf("%-64s","Movie Premiere Date:"+moviesList.get(index).getPremiereDate());
+            System.out.println("3.Movie premiere date");
             System.out.printf("%-64s","Movie RunTime:"+moviesList.get(index).getRunTime());
             System.out.println("4.Movie run time");
             System.out.printf("%-64s","============================");
@@ -558,7 +575,7 @@ public class Movie implements Cloneable{
                          day=0;
                          month=0;
                          year=0;
-                         System.out.println("Enter new premier date");
+                         System.out.println("Enter new premiere date");
                          
                           do{
                              try {
@@ -594,7 +611,7 @@ public class Movie implements Cloneable{
                          date1.setYear(year);
 
                         } while (date1.checkDate() == false);
-                     moviesList.get(index).setPremierDate(date1);
+                     moviesList.get(index).setPremiereDate(date1);
                      break;
                 case 4:
                     int runTime = 0;
@@ -636,8 +653,8 @@ public class Movie implements Cloneable{
             
             for(int i=0;i<moviesList.size();i++)
             {
-                pw.println(moviesList.get(i).getMovieName()+","+moviesList.get(i).getGenre()+","+moviesList.get(i).getPremierDate().getDay()
-                + "," + moviesList.get(i).getPremierDate().getMonth()+","+moviesList.get(i).getPremierDate().getYear()+","+moviesList.get(i).getRunTime()) ;
+                pw.println(moviesList.get(i).getMovieName()+","+moviesList.get(i).getGenre()+","+moviesList.get(i).getPremiereDate().getDay()
+                + "," + moviesList.get(i).getPremiereDate().getMonth()+","+moviesList.get(i).getPremiereDate().getYear()+","+moviesList.get(i).getRunTime()) ;
             }
             pw.close();
         } catch (FileNotFoundException ex) {
@@ -654,7 +671,7 @@ public class Movie implements Cloneable{
         {
             for(int j=i+1;j<moviesList.size();j++)
             {
-                if(moviesList.get(i).getPremierDate().getYear()>moviesList.get(j).getPremierDate().getYear())
+                if(moviesList.get(i).getPremiereDate().getYear()>moviesList.get(j).getPremiereDate().getYear())
                 {
                     temp =moviesList.get(i);
                     moviesList.set(i, moviesList.get(j));
@@ -667,7 +684,7 @@ public class Movie implements Cloneable{
         {
             for(int j=i+1;j<moviesList.size();j++)
             {
-                if(moviesList.get(i).getPremierDate().getMonth()>moviesList.get(j).getPremierDate().getMonth()&&(moviesList.get(i).getPremierDate().getYear()==moviesList.get(j).getPremierDate().getYear()))
+                if(moviesList.get(i).getPremiereDate().getMonth()>moviesList.get(j).getPremiereDate().getMonth()&&(moviesList.get(i).getPremiereDate().getYear()==moviesList.get(j).getPremiereDate().getYear()))
                 {
                     temp =moviesList.get(i);
                     moviesList.set(i, moviesList.get(j));
@@ -680,7 +697,7 @@ public class Movie implements Cloneable{
         {
             for(int j=i+1;j<moviesList.size();j++)
             {
-                if(moviesList.get(i).getPremierDate().getDay()>moviesList.get(j).getPremierDate().getDay()&&(moviesList.get(i).getPremierDate().getMonth()==moviesList.get(j).getPremierDate().getMonth())&&(moviesList.get(i).getPremierDate().getYear()==moviesList.get(j).getPremierDate().getYear()))
+                if(moviesList.get(i).getPremiereDate().getDay()>moviesList.get(j).getPremiereDate().getDay()&&(moviesList.get(i).getPremiereDate().getMonth()==moviesList.get(j).getPremiereDate().getMonth())&&(moviesList.get(i).getPremiereDate().getYear()==moviesList.get(j).getPremiereDate().getYear()))
                 {
                     temp =moviesList.get(i);
                     moviesList.set(i, moviesList.get(j));
@@ -695,7 +712,7 @@ public class Movie implements Cloneable{
         {
             for(int j=i+1;j<moviesList.size();j++)
             {
-                if(moviesList.get(i).getRunTime()>moviesList.get(j).getRunTime()&&moviesList.get(i).getPremierDate().getDay()==moviesList.get(j).getPremierDate().getDay()&&(moviesList.get(i).getPremierDate().getMonth()==moviesList.get(j).getPremierDate().getMonth())&&(moviesList.get(i).getPremierDate().getYear()==moviesList.get(j).getPremierDate().getYear()))
+                if(moviesList.get(i).getRunTime()>moviesList.get(j).getRunTime()&&moviesList.get(i).getPremiereDate().getDay()==moviesList.get(j).getPremiereDate().getDay()&&(moviesList.get(i).getPremiereDate().getMonth()==moviesList.get(j).getPremiereDate().getMonth())&&(moviesList.get(i).getPremiereDate().getYear()==moviesList.get(j).getPremiereDate().getYear()))
                 {
                     temp =moviesList.get(i);
                     moviesList.set(i, moviesList.get(j));

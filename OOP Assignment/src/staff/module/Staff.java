@@ -52,7 +52,7 @@ public class Staff extends Person{
     public boolean getIsManager(){
         return isManager;
     }
-    public int getCurrentStaff(){
+    public static int getCurrentStaff(){
         return currentStaff;
     }
     
